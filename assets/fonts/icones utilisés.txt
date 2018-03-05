@@ -1,0 +1,33 @@
+Leafs ea21
+Plates eb84
+Stopwatch ecda
+
+Full-Cart e932
+Align-Right e623
+
+
+Chef-Hat e746
+
+Like ea44
+Receipt ebc7
+Mail ea8d
+
+Mail-2 ea70
+Security-Check ec3b
+Lock ea5c
+MaleFemale ea93
+Email e854
+
+Male-2 ea90
+Map-Marker2 ea99
+Direction-East e811
+Telephone ed27
+
+Compass-4 e7a9
+CPU e7bf
+
+---
+
+e70b Calendar-4
+e771 Clock
+e647 Arrow-Forward2

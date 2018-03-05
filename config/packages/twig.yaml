@@ -1,0 +1,10 @@
+twig:
+    paths: ['%kernel.project_dir%/templates']
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        prix_formule_1: '%app.prix_formule_1%'
+        prix_formule_2: '%app.prix_formule_2%'
+        prix_supplement: '%app.prix_supplement%'
+        qte_formule_1: '%app.qte_formule_1%'
+        qte_formule_2: '%app.qte_formule_2%'
