@@ -1,0 +1,262 @@
+{# src/templates/base.html.twig #}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}Croqui{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="Croqui : livraison de brunch à domicile" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ path('homepage') }}" />
+    <meta property="og:image" content="https://www.croqui.fr/img/logo/logo-violet/PNG/Croqui-logo-transp-400.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.croqui.fr/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.croqui.fr/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.croqui.fr/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://www.croqui.fr/img/favicon/manifest.json">
+    <link rel="mask-icon" href="https://www.croqui.fr/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="Croqui">
+    <meta name="application-name" content="Croqui">
+    <meta name="theme-color" content="#ffffff">
+
+    {% block stylesheets %}
+
+
+        <link href="https://www.croqui.fr/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://www.croqui.fr/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://www.croqui.fr/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+        <link href='https://fonts.googleapis.com/css?family=Nunito:600%7CQuicksand:400,500,700' rel='stylesheet' type='text/css'>
+    {% endblock %}
+
+</head>
+<body class="scroll-assist">
+
+
+<a id="top"></a>
+<div class="loader"></div>
+
+<!-- BARRE NAVIGATION -->
+<nav class="">
+    <div class="nav-bar" data-fixed-at="200">
+        <div class="nav-module logo-module left">
+            <a href="{{ path('homepage') }}">
+                <img class="logo logo-dark" style="max-width:50%" alt="Croqui : la livraison de brunch à domicile sur Paris" src="https://www.croqui.fr/img/logo/logo-gris/PNG/logo-gris-45.png" />
+                <img class="logo logo-light" style="max-width:50%" alt="Croqui : la livraison de brunch à Paris" src="https://www.croqui.fr/img/logo/logo-gris/PNG/logo-gris-45.png" />
+            </a>
+        </div>
+
+        <div class="nav-module menu-module left">
+
+            <ul class="menu">
+                <li>
+                    <a href="{{ path('carte') }}">La carte </a>
+                </li>
+                <li class="vpf">
+                    <a href="{{ path('ccm') }}">Comment ça marche </a>
+                </li>
+                <li class="vpf">
+                    <a href="{{ path('homepage') }}">Mon compte</a>
+                </li>
+            </ul>
+
+        </div>
+
+
+        <div class="nav-module right hidden-md-down">
+            <a href="#" class="nav-function" data-notification-link="cart-overview">
+                <i id="btn-panier" class="interface-bag icon icon--sm panier-blanc"></i>
+                <span>Panier</span>
+            </a>
+        </div>
+
+        <div class="nav-module right"></div>
+
+    </div>
+
+    <div class="nav-mobile-toggle visible-sm visible-xs">
+        <i class="icon-Align-Center icon icon--sm"></i>
+        <i class="icon-Full-Cart icon icon--sm nav-function" data-notification-link="cart-overview"></i>
+
+    </div>
+</nav>
+                                            <!-- rajouter plus tard l'autoshow -->
+<div id="lePanier" class="notification pos-right pos-top cart-overview" data-notification-link="cart-overview" data-animation="from-right">
+    <div class="cart-overview__title">
+        <p class="votrepanier">Mon panier <span class="qtepanier">({{ app.session.get('panier')|length }})</span></p>
+    </div>
+    <div id="shopping-cart-results">
+        {{ render(controller("App\\Controller\\PanierController::showPanier", {"f":app.request.query.get("f")})) }}
+    </div>
+</div>
+
+<!-- DEBUT CONTENU -->
+<div class="main-container" itemscope itemtype="http://schema.org/FoodService">
+
+    {% block body %}
+
+    {% endblock %}
+
+
+    <footer class="bg--dark footer-4 text-center-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 ender">
+                    <img itemprop="logo" alt="Croqui : logo livraison du brunch à Paris" class="logo" src="https://www.croqui.fr/img/logo/logo-scriptural/PNG/Croqui-scriptural-blanc.png" />
+                    <p itemprop="description">
+                        La livraison de brunch et petit déjeuner à domicile. C'est chaque dimanche, à Paris et dans certaines communes limitrophes !
+                    </p>
+
+                    <br />
+
+                </div>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <h6>Lectures du dimanche aprem</h6>
+                    <ul class="footer__navigation">
+                        <li>
+                            <a href="{{ path('faq') }}" title="Vos questions fréquentes, nos réponses utiles !">
+                                <span>FAQ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('contact') }}" title="Une question, un souci : nous sommes là">
+                                <span>Contact</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('mentions') }}" title="Tout savoir sur l'identité de Croqui">
+                                <span>Mentions légales</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cgv') }}" title="Conditions générales de vente, pour que tout soit clair entre nous :)">
+                                <span>Conditions générales</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="visible-xs"><br /><br /></div>
+
+                <div class="col-sm-3">
+                    <h6>Retrouve-nous sur les internets</h6>
+                    <ul class="social-list">
+                        <li>
+                            <a target="_blank" href="https://www.facebook.com/croqui.fr" title="Facebook">
+                                <i class="socicon-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.instagram.com/croqui.fr" title="Instagram">
+                                <i class="socicon-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://plus.google.com/113584247812712939199" title="Google Plus">
+                                <i class="socicon-googleplus"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__lower">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 text-center-xs">
+					<span class="type--fine-print">&copy; Copyright
+						<span class="update-year">2017</span> Croqui. Made with &hearts; in <span itemprop="areaServed">Paris</span></span>
+                    </div>
+                    <div class="col-sm-6 text-right text-center-xs">
+                        <a title="Remonter la page" href="#top" class="inner-link top-link">
+                            <i class="interface-up-open-big"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://www.croqui.fr/js/paiement.js"></script>
+
+<script src="https://www.croqui.fr/js/jquery-2.1.4.min.js"></script>
+<script src="https://www.croqui.fr/js/all-mini-scripts.js"></script>
+<script src="https://www.croqui.fr/js/scripts.min.js"></script>
+<script>responsiveLazyload.lazyLoadImages();</script>
+
+<script>
+$(document).ready(function(){
+
+    $("#la-carte").on('click', 'div.ajout-rapide', function() { // Evènement jquery : clic sur bouton d'ajout au panier.
+
+        $(this).next('.cumul').show().delay(800).fadeOut("slow"); // Affichage du petit "+1" sur la carte lors de l'ajout.
+
+        var codep = $(this).attr("data-id"); // Récupération de l'id produit de la carte.
+
+            $.ajax({
+                url: "{{ path('add_panier') }}", // On envoie la requête à la fonction addPanier() de PanierController.
+                method: "post",
+                data: {"id":codep}
+            }).done(function(){
+
+                $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" ); // Appel à showPanier() de PanierController pour régénérer le panier.
+
+                // Récupération du contenu du div.qtepanierloader (hidden dans panier.html.twig), et inclusion dans le div.qtepanier (base.html.twig).
+                // Ce contenu est la quantité de produits dans la session Panier, qui est mise à jour lors de l'appel à addPanier().
+                $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");
+
+                $("#lePanier").addClass('notification--reveal'); // Réapparition de la colonne panier lors de l'ajout produit.
+
+            });
+    });
+
+    $("#shopping-cart-results").on('click', 'div.item__remove', function() { // Evènement jquery : clic sur la croix de suppression du panier.
+
+        $(this).parent().fadeOut(); // Disparition du produit de la liste.
+
+        var pcode = $(this).attr("data-code"); // Récupération du key du panier.
+
+        $.ajax({
+            url: "{{ path('delete_panier') }}", // On envoie la requête à la fonction deletePanier() de PanierController.
+            method: "post",
+            data: {"key":pcode}
+        }).done(function(){
+
+            $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" );
+
+            $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");
+
+        });
+    });
+
+    $("#shopping-cart-results").on('click', 'span.optionf', function() {
+
+        var pcode = $(this).attr("data-code");
+
+        $.ajax({
+            url: "{{ path('show_panier') }}", // On envoie la requête à la fonction showPanier() de PanierController.
+            method: "post",
+            data: {"f":pcode}
+        }).done(function(){
+
+            $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" );
+
+            $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");
+
+        });
+
+    });
+
+});
+</script>
+
+</body>
+</html>

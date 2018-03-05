@@ -1,0 +1,285 @@
+{# src/templates/Base/index.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <section class="height-100 imagebg cover cover-1 parallax" data-overlay="0">
+        <div class="background-image-holder">
+            <img itemprop="image" alt="Livraison de brunchs et petit-déjeuners à domicile" src="https://www.croqui.fr/img/backgrounds/grand-accueil.jpg" />
+        </div>
+
+        <div class="container-fluid pos-vertical-center">
+            <div class="row">
+                <div class="col-xs-6 text-center">
+
+                    <h1 id="sous-titre-accueil" class="lead">
+                        <br />
+                        <div class="hidden-sm-down"><img src="https://www.croqui.fr/img/empty4.gif" alt="Croqui" style="width:6em;"></div>
+                        <div class="hidden-md-up"><img src="https://www.croqui.fr/img/empty4.gif" alt="Croqui" style="width:5em;"></div>
+
+                        Le fournisseur officiel<br />du <b>brunch</b> au lit :)
+                        <br />
+                    </h1>
+
+                    <br />
+
+                    <div id="btn-explorer">
+                        <a href="{{ path('carte') }}" class="btn btn--sm btn--primary"><span class="btn__text">Découvrir la carte</span></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pitch" class="space-bottom--sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text-center" id="mainpitch">
+
+                    <img class="hidden-sm-down" alt="Logo Croqui" src="https://www.croqui.fr/img/logo/logo-violet/JPG/logo-standard-80.jpg" />
+
+                    <h2 class="h3" itemprop="serviceType">Compose le brunch de tes rêves, <span class="hidden-sm-up"><br /></span> à domicile.</h2>
+
+                    <meta itemprop="hoursAvailable" content="Su 10:00-15:00">
+                    <p class="lead">
+                        Chaque dimanche de 10H à 15H,<span class="hidden-sm-up"><br /></span> sur Paris et ses alentours.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                    <a class="btn mb--1" href="{{ path('ccm') }}">
+					<span class="btn__text">
+						Comment ça marche ?
+					</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="carte-paris" class="bg--primary space--sm cta cta-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <i class="icon icon-Map-Marker2"></i>
+                    <br /><br />
+                    <h3 class="whity">Une belle zone de livraison pour que chacun trouve son bonheur :)</h3>
+                    <br />
+                    <div class="h4 whity verifie_commune">Vérifie si ta commune est desservie :</div>
+
+                    <SELECT id="codepostal" name="codepostal" aria-label="Villes" class="arrondissement font-middle">
+                        <optgroup label="PARIS">
+                            <OPTION>75001 - PARIS
+                            <OPTION>75002 - PARIS
+                            <OPTION>75003 - PARIS
+                            <OPTION>75004 - PARIS
+                            <OPTION>75005 - PARIS
+                            <OPTION>75006 - PARIS
+                            <OPTION>75007 - PARIS
+                            <OPTION>75008 - PARIS
+                            <OPTION>75009 - PARIS
+                            <OPTION>75010 - PARIS
+                            <OPTION>75011 - PARIS
+                            <OPTION>75012 - PARIS
+                            <OPTION>75013 - PARIS
+                            <OPTION>75014 - PARIS
+                            <OPTION>75015 - PARIS
+                            <OPTION>75016 - PARIS
+                            <OPTION>75017 - PARIS
+                            <OPTION>75018 - PARIS
+                            <OPTION>75019 - PARIS
+                            <OPTION>75020 - PARIS
+                        </optgroup>
+                        <optgroup label="HAUTS DE SEINE">
+                            <OPTION>92100 - BOULOGNE BILLANCOURT
+                                <!--<OPTION>92110 - CLICHY-->
+                            <OPTION>92120 - MONTROUGE
+                            <OPTION>92130 - ISSY LES MOULINEAUX
+                                <!--<OPTION>92150 - SURESNES-->
+                            <OPTION>92170 - VANVES
+                                <!--<OPTION>92200 - NEUILLY SUR SEINE
+                                <OPTION>92210 - SAINT CLOUD
+                                <OPTION>92220 - BAGNEUX-->
+                            <OPTION>92240 - MALAKOFF
+                                <!--<OPTION>92300 - LEVALLOIS PERRET
+                                <OPTION>92310 - SEVRES
+                                <OPTION>92320 - CHATILLON
+                                <OPTION>92400 - COURBEVOIE
+                                <OPTION>92800 - PUTEAUX-->
+                        </optgroup>
+                        <!--<optgroup label="SEINE SAINT DENIS">
+                        <OPTION>93100 - MONTREUIL
+                        <OPTION>93170 - BAGNOLET
+                        <OPTION>93210 - SAINT DENIS
+                        <OPTION>93260 - LES LILAS
+                        <OPTION>93300 - AUBERVILLIERS
+                        <OPTION>93310 - LE PRE SAINT GERVAIS
+                        <OPTION>93400 - SAINT OUEN
+                        <OPTION>93500 - PANTIN
+                        </optgroup>-->
+                        <optgroup label="VAL DE MARNE">
+                            <OPTION>94110 - ARCUEIL
+                                <!--<OPTION>94160 - SAINT MANDE-->
+                            <OPTION>94200 - IVRY SUR SEINE
+                            <OPTION>94220 - CHARENTON LE PONT
+                                <!--<OPTION>94230 - CACHAN-->
+                            <OPTION>94250 - GENTILLY
+                            <OPTION>94270 - LE KREMLIN BICETRE
+                                <!--<OPTION>94300 - VINCENNES-->
+                                <!--<OPTION>94800 - VILLEJUIF-->
+                        </optgroup>
+                    </SELECT>
+
+                    <div id="cok" class="h5 whity"></div>
+
+                </div>
+                <div class="col-sm-6 text-center">
+                    <img alt="Carte de Paris et sa petite couronne" src="https://www.croqui.fr/img/carte-0410.jpg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="produits-bio" class="bg--white space--sm cta cta-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-sm-offset-1 text-center">
+                    <img class="healthyfood" alt="Ingrédients sains de l'agriculture biologique" src="https://www.croqui.fr/img/healthy-food.jpg">
+                </div>
+                <div class="col-xs-12 col-sm-5 col-sm-offset-1 text-center">
+                    <i class="icon icon-Leafs hidden-sm-down"></i>
+                    <br /><br />
+                    <h3 class="whity">Le top des ingrédients</h3>
+
+                    <div class="blacky font-middle">
+                        Nous revendiquons un <b>brunch sain</b> et fait-maison. Nos lutins veillent toujours à choisir des matières premières de qualité.
+                        <br />
+                        La carte change chaque semaine, pour évoluer avec les fruits et légumes de la saison.
+                    </div>
+                    <br /><br />
+                    <a class="btn btn--sm" href="{{ path('carte') }}">
+                    <span class="btn__text">
+                        Voir nos recettes
+                    </span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="subscribe subscribe-1 bg--dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="subscribe__title">
+                        <h4>La newsletter du cuistot</h4><h5>Et il n'est pas du genre à spammer, on te promet !</h5>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <form action="https://www.croqui.fr/?ok#newsletter" class="form--merge col-xs-8" method="post" data-error="Veuillez préciser votre adresse e-mail :)" data-success="Merci !">
+                        <input class="col-sm-8" id="fieldEmail" type="email" name="fieldEmail" placeholder="adresse@email.com" required />
+                        <button class="col-xs-4 btn btn--primary" type="submit"><b>S'abonner</b></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features features-9" id="objectif-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h3>Objectif : que ton weekend soit juste délicieux :)</h3>
+                    <p class="lead">
+                        Compose ton brunch de warrior,<span class="hidden-sm-up"><br /></span> notre team gère en coulisses.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-md-push-4 col-md-offset-0 col-sm-6 col-sm-offset-3 text-center">
+                    <img alt="Toasts avocat pour le brunch" class="js--lazyload"
+                         srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                         src="https://www.croqui.fr/img/avocat-screen.jpg"
+                         data-lazyload="https://www.croqui.fr/img/avocat-screen.jpg" />
+                </div>
+                <div class="col-md-3 col-md-pull-4 col-sm-6 col-xs-6 text-right text-center-xs">
+                    <div class="feature feature-1">
+                        <i class="icon icon-Chef-Hat"></i>
+                        <h5>24 recettes à choisir</h5>
+                        <p>Une palette de gourmandises aussi bien pour bruncher que pour le petit-déjeuner.</p>
+                    </div>
+                    <div class="feature feature-1">
+                        <i class="icon icon-Like"></i>
+                        <h5>Le sens du détail</h5>
+                        <p>Mieux qu'au resto, nos gourmandises sont dotées d'un résumé pour tout savoir.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6 col-md-push-2 text-center-xs">
+                    <div class="feature feature-1">
+                        <i class="icon icon-Clock"></i>
+                        <h5>Lève-tard...</h5>
+                        <p>En fonction de l'heure qu'il est, demande une livraison instantanée ou programmée.</p>
+                    </div>
+                    <div class="feature feature-1">
+                        <i class="icon icon-Lock"></i>
+                        <h5>All is under control</h5>
+                        <p>Fais-toi livrer en 3 clics : choix du créneau, adresse de livraison, et paiement par carte bleue.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="elements-buttons">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-3 col-sm-6 text-center">
+                    <a class="btn mb--1" href="{{ path('carte') }}">
+					<span class="btn__text">
+						Explorer la carte
+					</span>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <a class="btn mb--1" href="{{ path('ccm') }}#formules">
+					<span class="btn__text">
+						Voir les tarifs
+					</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reseaux" class="imagebg section--even parallax" data-overlay="6">
+        <div class="background-image-holder">
+            <img alt="Réseaux sociaux" class="js--lazyload"
+                 srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                 src="https://www.croqui.fr/img/reseaux.jpg"
+                 data-lazyload="https://www.croqui.fr/img/reseaux.jpg" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 text-center">
+                    <h4>Rejoins-nous sur les réseaux<br />et partage les photos de ton brunch !</h4>
+                    <br />
+                    <div class="col-sm-2 col-xs-4 text-center col-sm-offset-3">
+                        <a target="_blank" href="https://www.facebook.com/croqui.fr" title="Facebook"><img alt="Facebook" src="https://www.croqui.fr/img/logo-facebook.png" /></a>
+                    </div>
+                    <div class="col-sm-2 col-xs-4 text-center">
+                        <a target="_blank" href="https://www.instagram.com/croqui.fr" title="Instagram"><img alt="Instagram" src="https://www.croqui.fr/img/logo-instagram.png" /></a>
+                    </div>
+                    <div class="col-sm-2 col-xs-4 text-center">
+                        <a target="_blank" href="https://plus.google.com/113584247812712939199" title="Google Plus"><img alt="Google Plus" src="https://www.croqui.fr/img/logo-googleplus.png" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% if app.session.get('panier')|length > 0 %}
+
+<div class="cart-overview__subtotal text-center hidden-lg-up mobile">
+    <div class="container_formula">
+        <div>
+            {{ formule.phrase|raw }}
+        </div>
+        <ul>
+            <li class="bouton_formule left {% if formule.typeFormule == 1 %}selectedcolor{% else %}notselectedcolor{% endif %}"><span class="optionf" data-code="solo" {% if formule.typeFormule == 1 %}style="color:white;"{% endif %}>Solo</span></li>
+            <li class="bouton_formule right {% if formule.typeFormule == 2 %}selectedcolor{% else %}notselectedcolor{% endif %}"><span class="optionf" data-code="duo" {% if formule.typeFormule == 2 %}style="color:white;"{% endif %}>Duo</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="cart-overview__action hidden-lg-up mobile">
+    <a href="{{ path('commande') }}" class="btn btn--square btn--primary">
+        <span class="btn__text">Commander</span>
+    </a>
+</div>
+
+<ul class="cart-overview__items">
+
+    {% for key, produit in panier|reverse(true) %}
+
+        <li>
+            <div class="item__image"><img class="img-circle" alt="{{ produit.nom }}" src="https://www.croqui.fr/img/produits/{{ produit.url }}/360.jpg" srcset="https://www.croqui.fr/img/produits/baguette/360.jpg 1x, https://www.croqui.fr/img/produits/baguette/720.jpg 2x" /></div>
+            <div class="item__detail" style="font-size:0.9em;">{{ produit.nom|slice(0, 35) }}{% if produit.nom|length > 36 %}&hellip;{% endif %}</div><div class="item__remove" data-code="{{ key }}"></div>
+        </li>
+
+    {% endfor %}
+
+    <li>
+        <div class="item__image"><img class="img-circle" alt="La belle baguette" src="https://www.croqui.fr/img/produits/baguette/360.jpg" /></div>
+        <div class="item__detail" style="font-size:0.9em;"><br />{% if formule.typeFormule == 1 %}La belle demi-baguette{% else %}La belle baguette entière{% endif %} <b style="color:green;font-size:0.8em;">(inclus)</b></div>
+    </li>
+</ul>
+
+<div class="subtotal_fixed hidden-md-down">
+    <div class="cart-overview__subtotal text-center hidden-md-down">
+        <div class="container_formula">
+            <div>
+                {{ formule.phrase|raw }}
+            </div>
+            <ul>
+               <li class="bouton_formule left {% if formule.typeFormule == 1 %}selectedcolor{% else %}notselectedcolor{% endif %}"><span class="optionf" data-code="solo" {% if formule.typeFormule == 1 %}style="color:white;"{% endif %}>Solo</span></li>
+                <li class="bouton_formule right {% if formule.typeFormule == 2 %}selectedcolor{% else %}notselectedcolor{% endif %}"><span class="optionf" data-code="duo" {% if formule.typeFormule == 2 %}style="color:white;"{% endif %}>Duo</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="cart-overview__action hidden-md-down" style="margin-top:1em;">
+        <a href="{{ path('commande') }}" class="btn btn--square btn--vert" style="padding-left:2em;padding-right:2em;">
+            <span class="btn__text">VALIDER LE PANIER</span>
+        </a>
+    </div>
+</div>
+
+{% else %}
+
+<div class="text-center"><br />Le panier est vide</div>
+
+{% endif %}
+
+<div class="hidden">
+    <span id="qtepanierloader">({{ app.session.get('panier')|length }})</span>
+</div>

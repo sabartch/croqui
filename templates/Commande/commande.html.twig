@@ -1,0 +1,163 @@
+{# src/Commande/commande.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {% if app.session.get('panier')|length > 0 %}
+
+        <section class="height-40 page-title">
+            <div class="container pos-vertical-center">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h2>Valider le panier</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="shop-checkout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7">
+
+                        <h4 class="text-center hidden-xs-down">Compo' de l'équipe ({{ app.session.get('panier')|length }})<br /><br /></h4>
+                        <ul class="liste_panier">
+
+                            {% set disclaimer = false %}
+
+                            {% for key, produit in panier|reverse(true) %}
+
+                                <li>
+                                    <div class="item__image">
+                                        <img class="img-circle" alt="{{ produit.nom }}" src="https://www.croqui.fr/img/produits/{{ produit.url }}/360.jpg" srcset="https://www.croqui.fr/img/produits/{{ produit.url }}/360.jpg 1x, https://www.croqui.fr/img/produits/{{ produit.url }}/720.jpg 2x" />
+                                    </div>
+                                    <div class="item__detail">
+                                        <span>
+                                            {{ produit.nom }}
+                                            {% if produit.supplement > 0 %}<span style='padding-left:15px;color:green;font-size:0.8em;font-weight:500;'>(+{{ produit.supplement|number_format(2, '.', ',') }} €)</span>{% endif %}
+                                        </span>
+
+                                        {% for stock in stocks %}
+                                            {% if stock.id == produit.id and stock.stock < 1 %}
+                                                {% set disclaimer = true %}
+                                                <span class='indispoalert'>Risque d'indisponibilité</span>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    </div>
+                                    <a href="{{ path('commande') }}?p={{ key }}"><div class="item__remove"></div></a>
+                                </li>
+
+                            {% endfor %}
+
+                            <li><div class="item__image"><img class="img-circle" alt="Baguette de pain" src="https://www.croqui.fr/img/produits/baguette/360.jpg" srcset="https://www.croqui.fr/img/produits/baguette/360.jpg 1x, https://www.croqui.fr/img/produits/baguette/720.jpg 2x" /></div><div class="item__detail"><span>La belle {% if formule.typeFormule == 1 %}demi-baguette{% else %}baguette entière{% endif %} <span style="font-size:0.85em;color:green;font-weight:500;">(incluse)</span></span></div></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-5">
+
+                        <h4 class="text-center">Calcul de l'addition (selon des algorithmes complexes) :</h4>
+
+                        <div class="bg--white recap text-center box-shadow-clean" style="font-size:0.9em;font-weight:500;color:black;">
+
+                            <p>Formule {% if formule.typeFormule == 1 %}Solo{% else %}Duo{% endif %} : <b>{% if formule.typeFormule == 1 %}{{ prix_formule_1|number_format(2, '.', ',') }}{% elseif formule.typeFormule == 2 %}{{ prix_formule_2|number_format(2, '.', ',') }}{% endif %} €</b></p>
+
+                            {% if formule.nbSupplements > 0 %}<p>Gourmandises en plus : <b>{{ formule.nbSupplements }} x {{ prix_supplement }} &euro;</b></p>{% endif %}
+
+                            <? if($total_addon > 0){ ?><p>Suppléments : <b><? echo number_format($total_addon, 0, ',', ' ') ?> €</b></p><? } ?>
+
+                            <!--<? if(!empty($reduc)){ ?><p>Réduction : <b><? if(is_numeric($reduc)){ echo number_format($reduc, 2, ',', ' ')." &euro;"; } else { echo $reduc; } ?></b></p><? } ?>-->
+
+                            <p>Livraison : <b>Gratuite</b></p>
+
+                            <form action="https://www.croqui.fr/<? if(isset($_SESSION["email"]) AND isset($_SESSION["adresse"])){echo "confirmation";}else{echo "coordonnees";} ?>/" method="post">
+
+                            <div class="selectdiv date">
+                                <select id="date" name="date">
+                                    <? if(date("N") == 7){ if(date("H") < 15){ ?><option <? if($_SESSION['date'] == date('N/j/n/Y')){echo "selected";} ?> value="<? echo date('N/j/n/Y'); ?>">Aujourd'hui</option><? }} ?>
+                                    <? if(date("N") == 6){ ?><option <? if($_SESSION['date'] == date('N/j/n/Y', strtotime('+1 day'))){echo "selected";} ?> value="<? echo date('N/j/n/Y', strtotime('+1 day')); ?>">Demain</option><? } ?>
+                                    <? if(date("N") <= 5){ ?><option <? if($_SESSION['date'] == date('N/j/n/Y', strtotime("next Sunday"))){echo "selected";} ?> value="7/<? echo date('j/n/Y', strtotime("next Sunday")); ?>">Ce dimanche</option><? } ?>
+                                    <option <? if($_SESSION['date'] == date('N/j/n/Y', strtotime("Sunday next week"))){echo "selected";} ?> value="7/<? echo date('j/n/Y', strtotime("Sunday next week")); ?>">Dimanche prochain</option>
+                                </select>
+                            </div>
+
+                            <div id="calendar"></div>
+
+                            <div style="clear:both;"></div>
+
+                            <!--<div style="font-weight:bold;font-size:0.8em;text-align:center;background-color:#c0392b;color:white;padding:5px;margin-top:10px;border-radius:8px;">Dimanche 5 octobre : réservations complètes</div>-->
+
+                            <!--<hr />--><br /><br />
+
+                            <p style="color:black;">Total : <b><?
+					                $tronq = floor($total);
+					                if(($total-$tronq) > 0){ echo number_format($total, 2, ',', ' '); }
+                                    else { echo number_format($total, 0, ',', ' '); }
+                                    ?> €</b></p>
+                            <br />
+                            <button class="validation_panier" type="submit">Valider le panier</button>
+
+                            </form>
+
+                        </div>
+
+                        <div class="modal-instance" style="display:block;">
+
+                            <div style="text-align:right;padding:15px 15px 0 0;font-size:13px;"><a class="modal-trigger" href="#">Code de réduction ?</a></div>
+
+                            <div class="modal-container">
+                                <div class="modal-content bg--white height--natural">
+                                    <div class="form-subscribe-1 boxed boxed--lg bg--white box-shadow-wide">
+                                        <div class="subscribe__title text-center">
+                                            <h4>Tu as un code de réduction ?</h4>
+                                            <p class="h5">Voilà une bonne nouvelle :)</p>
+                                        </div>
+                                        <form class="form--center-submit-button" action="{{ path('commande') }}" method="post" id="subForm">
+                                            <div class="input-with-icon">
+                                                <i class="icon icon-Receipt-3"></i>
+                                                <input style="border:1px dashed grey;" id="codepromo" name="codepromo" type="text" />
+                                            </div>
+                                            <button type="submit" class="btn btn--sm btn--primary" style="border-radius:3px;font-weight:500;">Valider</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        {% if disclaimer == true %}
+                <div class="notification pos-right pos-top col-sm-6 col-md-4 col-xs-12 growl-notice" data-animation="from-right" data-autoshow="500">
+                    <div class="boxed boxed--sm bg--dark">
+                        <span style="font-weight:500;font-size:0.9em;">On me signale dans l'oreillette qu'une ou plusieurs gourmandises sont en rupture de stock ! On te conseille de remplacer les gourmandises signalées ;)</span>
+                    </div>
+                </div>
+        {% endif %}
+
+    {% else %}
+
+        <section class="height-80 page-title">
+            <div class="container pos-vertical-center">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h2>Le panier est vide !</h2>
+                        <a class="btn" href="{{ path('carte') }}"><span class="btn__text">Explorer la carte des gourmandises</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+{% endblock %}

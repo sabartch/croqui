@@ -1,0 +1,355 @@
+{# src/Base/faq.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <section class="height-60 imagebg parallax" data-overlay="6">
+
+        <div class="background-image-holder">
+
+            <img alt="Foire aux questions" src="https://www.croqui.fr/img/backgrounds/muffin.jpg" />
+
+        </div>
+
+        <div class="container pos-vertical-center">
+
+            <div class="row">
+
+                <div class="col-sm-12 text-center">
+
+                    <h1>FAQ</h1>
+
+                    <p><i>"On entend seulement les questions auxquelles on est capable de trouver une réponse."</i> Friedrich Nietzsche</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="bg--white">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+
+                    <ul class="accordion accordion--oneopen">
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Pourquoi n'y a-t-il pas de prix sur les produits ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Les prix sont calculés automatiquement en fonction du nombre de gourmandises dans le panier. Ajoutez entre 1 et 6 gourmandises au panier, et le site appliquera automatiquement le tarif "Formule Solo". Ajoutez-en 6 de plus, et c'est le tarif "Formule Duo" qui s'applique.<br /><br />Il n'y a aucune quantité minimale ou maximale obligatoire. Au-delà de 6 (ou 12) gourmandises, chaque gourmandise supplémentaire coûte <?php echo $prix_supplement; ?> €. Sur certaines gourmandises, vous pourrez trouver par exemple +1€ ou +2€, c'est un petit supplément qui s'ajoute à la formule. Tous les prix sont exprimés en TTC.
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Y a-t-il un minimum de gourmandises à sélectionner ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Il peut arriver que vous n'ayez pas trop faim. Rien ne vous oblige à sélectionner 5 produits pour compléter la formule Solo. Cependant, le prix des formules est fixe. C'est un minimum qui nous permet de payer le livreur et nos lutins cuisiniers :)
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Faut-il créer un compte pour passer commande ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Pas besoin de créer un compte, il suffit de remplir le formulaire des coordonnées au moment de la commande. Après le paiement, vous recevrez un mail pour accéder à votre espace client, tout simplement !
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Quel est le délai de livraison de mon brunch ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Notre cuisine est située en plein centre de Paris. Pour une commande avec livraison immédiate, il nous faut environ 15 minutes de préparation en cuisine à partir de la confirmation de commande. Ensuite le livreur met entre 5 et 25 minutes à venir chez vous, en fonction du trafic et de l'endroit où vous êtes.<br /><br />Pour une livraison différée, nous faisons tout pour livrer dans le créneau choisi (en essayant de livrer au début du créneau plutôt qu'à la fin).
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Quels sont les frais de livraison ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    La livraison est toujours gratuite ! Et ce, quel que soit le montant de la commande et le lieu de livraison (par contre, on ne livre que sur Paris et dans les communes limitrophes).
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Où livrez-vous ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Nous livrons partout dans la capitale, c'est-à-dire à l'intérieur du périph', mais aussi dans les communes limitrophes de la capitale. Au moment de rentrer les coordonnées de livraison, il suffit de choisir son code postal dans la liste.
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Mon adresse n’est pas couverte par la zone de livraison. Y a moyen ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Ça ne coûte rien de demander :) Contactez-nous pour savoir si un livreur peut venir se déplacer jusqu’à votre adresse, même si elle n’est pas dans les communes desservies sur le site.
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Quelqu’un peut-il récupérer la livraison à ma place ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Tout à fait, le livreur ne demande pas de signature. La livraison se fait en mains propres, on vous fait confiance :)
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Comment ça se passe pour le paiement ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Le paiement se fait uniquement par carte bancaire (CB, Visa, Mastercard, American Express) en ligne, à la fin de la commande. Pour plus de sécurité et de simplicité, nous ne laissons pas le livreur encaisser la commande (en revanche vous pouvez lui laisser un pourboire, il sera content !)
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Comment obtenir une facture ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Il suffit de nous envoyer un email contenant votre adresse de livraison et de facturation. Vous pouvez faire cette demande avant ou après avoir passé commande. On vous l’envoie dans la journée !
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Avez-vous un restaurant sur Paris, un endroit pour manger ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Croqui c'est la livraison de brunchs à domicile uniquement, et on est focus là-dessus ! Pour la préparation des gourmandises, nous avons une super-cuisine au centre de Paris. Pour les viennoiseries, nous allons les chercher au petit matin chez nos boulangers parisiens préférés !
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Les gourmandises arrivent-elles chaudes ou froides ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Certaines gourmandises peuvent être mangées chaudes : elles sont dotées d’un hashtag <i>#chaud</i> dans la fiche descriptive. Toutes nos gourmandises sont maintenues à +4°C pendant le transport, et arrivent donc froides chez vous. Il suffit de les passer aux micro-ondes ou bien au four si vous souhaitez les déguster chaudes !
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Les gourmandises sont-elles faites maison ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Absolument ! Il n’y a que les viennoiseries qui proviennent de nos meilleures boulangeries parisiennes. Pour le reste, tout est cuisiné-maison le matin même !
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Puis-je garder mes gourmandises pour plus tard ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Vous êtes maître de votre destin ! Cependant, on vous conseille de les consommer durant la journée, ou au plus tard le lendemain (en veillant à les garder au réfrigérateur).
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <div class="accordion__title">
+
+                                <span class="h5">Qu’en est-il des allergènes ?</span>
+
+                            </div>
+
+                            <div class="accordion__content">
+
+                                <p>
+
+                                    Vous trouverez des indications dans les fiches descriptives de nos gourmandises, par exemple <i>#glutenfree</i>. Cependant, notre cuisine accueille de multiples ingrédients et nous ne pouvons pas garantir que nos gourmandises sont garanties 100% sans allergènes. Si vous avez un doute, n’hésitez pas à nous poser la question !
+
+                                </p>
+
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

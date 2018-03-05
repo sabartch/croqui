@@ -1,0 +1,522 @@
+{# src/Base/ccm.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<section class="height-70 imagebg parallax" data-overlay="6">
+
+    <div class="background-image-holder">
+
+        <img alt="Brunch délicieux" src="https://www.croqui.fr/img/backgrounds/gourmandise-ccm2.jpg" />
+
+    </div>
+
+    <div class="container pos-vertical-center">
+
+        <div class="row">
+
+            <div class="col-sm-12 text-center">
+
+                <h1>Comment ça marche</h1>
+
+                <!-- <p><i>"La simplicité procure davantage de bonheur que la complexité."</i> Bouddha</p> -->
+
+            </div>
+
+        </div>
+
+        <!--eond of row-->
+
+    </div>
+
+    <!--end of container-->
+
+</section>
+
+
+
+<section id="topo" class="space--even">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
+
+                <h3>Ça se passe entre notre cuisine <span class="hidden-sm-up"><br /></span>et votre lit &#9829;</h3>
+
+                <p>
+
+                    Vous êtes en weekend.
+
+                    <br /><br />
+
+                    Vous êtes tellement bien sous la couette.
+
+                    <br /><br />
+
+                    Nous, on prépare des brunchs délicieux.
+
+                    <br /><br />
+
+                    Ça pourrait matcher entre nous :)
+
+                    <br /><br />
+
+                    <strong>Nous livrons chaque dimanche, sur Paris et ses alentours.</strong>
+
+                    <br />
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!--end of row-->
+
+    </div>
+
+    <!--end of container-->
+
+</section>
+
+
+
+<section id="formules" data-overlay="0">
+
+    <div class="background-image-holder">
+
+        <img alt="Gourmandises pour le petit déjeuner" src="https://www.croqui.fr/img/backgrounds/cookies-light.jpg" />
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+
+
+            <div class="col-sm-12 text-center">
+
+                <div class="elements--title">
+
+                    <h2>Les formules</h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-4 col-sm-6 col-md-offset-2">
+
+                <div class="pricing pricing-1 text-center">
+
+                    <h6>Solo</h6>
+
+                    <div class="pricing__price">
+
+                        <span class="h1">...</span>
+
+                        <span class="pricing__dollar h5">€</span>
+
+                    </div>
+
+                    <hr>
+
+                    <p class="black-modal" style="font-size:0.9em;font-weight:500;">
+
+                        <b>...</b> gourmandises au choix
+
+                        <br /><br />+ 1 demi-baguette incluse
+
+                        <br /><br /><span style="font-size:0.9em;">... € par gourmandise en plus</span>
+
+                        <br /><br />Livraison gratuite
+
+                    </p>
+
+                    <a class="btn btn--primary" href="htt{{ path('carte') }}?f=solo">
+
+                                    <span class="btn__text">
+
+                                        Choisir !
+
+                                    </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-4 col-sm-6">
+
+                <div class="pricing pricing-1 text-center">
+
+                    <h6>Duo</h6>
+
+                    <div class="pricing__price">
+
+                        <span class="h1">...</span>
+
+                        <span class="pricing__dollar h5">€</span>
+
+                    </div>
+
+                    <hr>
+
+                    <p class="black-modal" style="font-size:0.9em;font-weight:500;">
+
+                        <b>...</b> gourmandises au choix
+
+                        <br /><br />+ 1 baguette entière incluse
+
+                        <br /><br /><span style="font-size:0.9em;">... € par gourmandise en plus</span>
+
+                        <br /><br />Livraison gratuite
+
+                    </p>
+
+                    <a class="btn btn--primary" href="{{ path('carte') }}?f=duo">
+
+                                    <span class="btn__text">
+
+                                        Choisir !
+
+                                    </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-8 col-sm-12 col-md-offset-2" id="choix-multi">
+
+                <div class="text-center">
+
+                    <h4>Vous êtes plus nombreux ?</h4>
+
+                    <p class="black-modal" style="font-size:0.9em;font-weight:500;">Ajoutez autant de gourmandises que vous voulez dans le panier.
+
+                        <br />Au-delà de ... gourmandises, tout est à ... euros. Livraison gratuite !</p>
+
+                    <a class="btn btn--primary" href="{{ path('carte') }}?f=multi">
+
+                                    <span class="btn__text">
+
+                                        Choisir !
+
+                                    </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="bg--secondary" id="first-ccm">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-6 vcenter">
+
+                <img alt="La carte des produits" src="https://www.croqui.fr/img/ipad-carte.jpg" />
+
+            </div>
+
+
+
+            <div class="col-sm-4 col-sm-offset-1 text-center vcenter">
+
+                <p class="vcenter">
+
+                    C'est super simple : explore <a href="{{ path('carte') }}">la carte</a> des gourmandises. Ajoutes-en ... au panier, ou ... si vous êtes deux.
+
+                    <br /><br />
+
+                    Les gourmandises n'ont pas de "prix", elles se valent toutes ! Choisis juste tes préférées.
+
+                    <br /><br />
+
+                    Si vous êtes plusieurs ou que vous avez une grosse faim, ajoutez autant de gourmandises que nécessaire pour ... € chacune.
+
+                    <br /><br />
+
+                    Le total sera ajusté automatiquement.
+
+                </p>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section id="second-ccm" class="imageblock">
+
+    <div class="imageblock__content col-md-5 col-sm-4 pos-right">
+
+        <div class="background-image-holder">
+
+            <img alt="image" src="https://www.croqui.fr/img/backgrounds/stuart-livreurs.jpg" />
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-5 col-sm-8">
+
+
+
+                <div class="text-center">
+
+                    <p class="text-center">
+
+                        <img alt="Croissant, petit déjeuner, brunch en livraison" src="https://www.croqui.fr/img/coffecup.png" />
+
+                        <br /><br />
+
+                        Nous allumons les fourneaux chaque dimanche. Les livraisons commencent à 10H jusqu'à 15H.
+
+                        <meta itemprop="hoursAvailable" content="Sa,Su 10:00-15:00">
+
+                        <br /><br />
+
+                        Après avoir validé le panier tu pourras, en fonction de l'heure qu'il est :<br /><br />
+
+                        - Demander une livraison <b>immédiate</b><br /><br />
+
+                        - Réserver la livraison pour une heure ou date <b>ultérieure</b> !
+
+                    </p>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section id="third-ccm" class="imageblock bg--secondary">
+
+    <div class="imageblock__content col-md-5 col-sm-4 pos-left">
+
+        <div class="background-image-holder background--top">
+
+            <img alt="image" src="https://www.croqui.fr/img/backgrounds/paiement-screen.jpg" />
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-5 col-md-push-7 col-sm-8 col-sm-push-4">
+
+
+
+                <div class="text-center">
+
+                    <p>
+
+                        <img alt="Commander un petit déjeuner ou brunch directement en ligne !" src="https://www.croqui.fr/img/bicycle.png" />
+
+                        <br /><br />
+
+                        Tu habites dans Paris ou à côté ? Parfait !<br />C'est là qu'on livre.
+
+                        <br /><br />
+
+                        Il nous faudra quelques infos de livraison, un 06 au cas où. Toutes les indications sont bienvenues (code porte&hellip;).
+
+                        <br /><br />
+
+                        Plus qu'à cliquer sur <i>Confirmer</i><br />régler par CB<br />et le tour est joué ;)
+
+                    </p>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section id="suggestions" class="bg--primary space--sm cta cta-5">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-xs-12 text-center">
+
+                <p class="h4">Pour suivre la commande en direct :</p>
+
+                <a class="btn btn--sm btn--primary" href="https://www.croqui.fr/compte/">
+
+                                <span class="btn__text">
+
+                                   Accéder à Mon compte
+
+                                </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-4 text-center">
+
+                <div class="feature boxed feature-1">
+
+
+
+                    <i class="icon icon-Like"></i>
+
+                    <h5>Tout est bon ?</h5>
+
+                    <p>Super, mission accomplie. Tu es prêt(e) à explorer la carte !</p>
+
+                    <hr />
+
+                    <a class="btn btn--sm btn--primary" href="{{ path('carte') }}">
+
+										<span class="btn__text">
+
+										   Explorer la carte
+
+										</span>
+
+                    </a>
+
+
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-4 text-center">
+
+                <div class="feature boxed feature-1">
+
+
+
+                    <i class="icon icon-Receipt-3"></i>
+
+                    <h5>Des questions ?</h5>
+
+                    <p>Dans le doute, on t'a concocté une FAQ aux petits oignons</p>
+
+                    <hr />
+
+                    <a class="btn btn--sm btn--primary" href="{{ path('faq') }}">
+
+										<span class="btn__text">
+
+										   Voir la FAQ
+
+										</span>
+
+                    </a>
+
+
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-4 text-center">
+
+                <div class="feature boxed feature-1">
+
+
+
+                    <i class="icon icon-Mail"></i>
+
+                    <h5>Pour un champion ?</h5>
+
+                    <p>Même la meilleure FAQ ne répondra pas à tes questions existentielles :)</p>
+
+                    <hr />
+
+                    <a class="btn btn--sm btn--primary" href="{{ path('contact') }}">
+
+										<span class="btn__text">
+
+										   Nous contacter
+
+										</span>
+
+                    </a>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,6 +1,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app.prix_formule_1: 29
+    app.prix_formule_2: 49
+    app.prix_supplement: 4
+    app.qte_formule_1: 6
+    app.qte_formule_2: 12
+    locale: 'fr'
 
 services:
     # default configuration for services in *this* file
