@@ -184,7 +184,7 @@
 
 
 
-<script src="https://js.stripe.com/v3/"></script>
+<!--<script src="https://js.stripe.com/v3/"></script>-->
 <script src="https://www.croqui.fr/js/paiement.js"></script>
 
 <script src="https://www.croqui.fr/js/jquery-2.1.4.min.js"></script>
@@ -256,6 +256,16 @@ $(document).ready(function(){
     });
 
 });
+
+
+$("#calendar").load("{{ path('calendrier') }}");
+
+$( "#date" ).change(function() {
+    $( "#date option:selected" ).each(function() {
+        $("#calendar").load("{{ path('calendrier') }}", { choice : $(this).val() });
+    });
+})
+
 </script>
 
 </body>

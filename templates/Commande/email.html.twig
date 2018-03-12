@@ -1,0 +1,65 @@
+{# src/Commande/email.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<section class="height-50 page-title">
+
+    <div class="container pos-vertical-center">
+
+        <div class="row">
+
+            <div class="col-sm-12 text-center">
+
+                <h2>Livraison</h2>
+
+                <h5 style="font-weight:500;">Une adresse mail pour suivre la commande</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="elements-forms">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2 text-center">
+
+                <div class="form-subscribe-1 ">
+
+                    <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0">
+
+                        <form action="{{ path('coordonnees') }}" class="form--merge" method="post">
+
+                            <input id="fieldMail" class="col-sm-8" type="email" name="email" value="arthur@gmail.com" placeholder="adresse@email.com" />
+
+                            <button class="col-sm-4 btn btn--primary" style="font-weight:bold;" type="submit">Valider</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div>
+
+        <br /><p class="bouton-retour"><a href="{{ path('commande') }}">&laquo;  Retour au panier</a></p>
+
+    </div>
+
+</section>
+
+{% endblock %}

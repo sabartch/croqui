@@ -1,0 +1,227 @@
+{# src/Commande/confirmation.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <section class="height-40 page-title">
+
+        <div class="container pos-vertical-center">
+
+            <div class="row">
+
+                <div class="col-sm-12 text-center">
+
+                    <h2>Confirmation</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="confirmation">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="row">
+
+                        <div class="col-md-6 hidden-sm-down">
+
+                            <div class="col-xs-12 bg--white confirma text-center">
+
+                                <h5 class="text-center">Addition</h5><hr />
+
+                                <p>Formule : <? echo $_SESSION['formulefinale']; ?></p>
+
+                                <p>Gourmandises : <?php echo $qte_panier; ?></p>
+
+                                <p>Livraison : Gratuite</p>
+
+                                <span class="hidden-sm-down"><hr /></span>
+
+                                <p>Total TTC : <span style="color:green;"><b><? echo number_format($_SESSION["montant"], 2, ',', ' '); ?> €</b></span></p>
+
+                            </div>
+
+                        </div>
+
+                        <?
+
+$nom_jour_fr = array("","lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
+
+$mois_fr = Array("", "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre");
+
+list($nom_jour, $jour, $mois, $annee) = explode('/', $_SESSION['date']);
+
+$date_fr = $nom_jour_fr[$nom_jour].' '.$jour.' '.$mois_fr[$mois];
+
+?>
+
+
+                        <div class="col-md-6">
+
+                            <div class="col-xs-12 bg--white confirma text-center">
+
+                                <h5 class="text-center hidden-sm-down">Livraison<hr /></h5>
+
+                                <h5 class="text-center hidden-sm-up">Récap ' de la livraison<hr /></h5>
+
+                                <p><? echo $_SESSION['nom']; ?></p>
+
+                                <p><? echo $_SESSION['adresse']; ?></p>
+
+                                <p><? echo $_SESSION['precisions']; ?></p>
+
+                                <p><? echo str_replace("- ", "", $_SESSION['codepostal']); ?></p>
+
+                                <p class="hidden-sm-down"><? echo "Tel : ". $_SESSION['telephone']; ?></p>
+
+                                <p class="hidden-sm-up"><br /></p>
+
+                                <p class="hidden-sm-up"><b><? echo ucfirst ($date_fr); ?></b></p>
+
+                                <p class="hidden-sm-up"><b><? if($_SESSION['heure'] == "now"){echo"le plus vite possible";}else{echo "entre ". $_SESSION['heure'];} ?></b></p>
+
+                                <p class="hidden-sm-up"><br /></p>
+
+                                <p class="hidden-sm-up">Formule : <? echo $_SESSION['formulefinale']; ?></p>
+
+                                <p class="hidden-sm-up">Livraison : Gratuite</p>
+
+                                <p class="hidden-sm-up">Total TTC : <span style="color:green;"><b><? echo number_format($_SESSION["montant"], 2, ',', ' '); ?> €</b></span></p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 hidden-sm-down">
+
+                            <div class="col-xs-12 bg--white confirma text-center">
+
+                                <h5 class="text-center">Créneau</h5><hr />
+
+                                <p><br />Livraison chez vous le :</p><p><b><? echo $date_fr; ?></b></p>
+
+                                <p><? if($_SESSION['heure'] == "now"){echo"le plus vite possible";}else{echo "entre ". $_SESSION['heure'];} ?></p><p><br /></p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="col-xs-12 bg--white confirma text-center">
+
+                                <h5 class="text-center">Compo'</h5><hr />
+
+                                <?
+
+						if($_SESSION['formulefinale'] == "Duo" OR $_SESSION['formulefinale'] == "Multi"){$type_baguette = "une baguette entière";}else{$type_baguette = "une demi-baguette";}
+
+
+
+								foreach($_SESSION["products"] as $key => $value){
+
+                                $nom_produit = $_SESSION['tableau_noms'][$value];
+
+                                $cart_box .= lcfirst($nom_produit) . ' &bullet; '; // enlève la première majuscule de chaque entrée + ajoute bullet
+
+                                }
+
+                                $cart_box .= $type_baguette;
+
+                                echo rtrim(ucfirst($cart_box), ", "); // ajoute une majuscule et enlève la dernière virgule de la boucle
+
+                                ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div id="carre_paiement" class="col-md-12 bg--white confirma text-center">
+
+                        <h3 class="text-center">Paiement</h3>
+
+                        <hr />
+
+                        <div>
+
+                            <p><i class="icon icon--xs icon-Lock"></i> Paiement sécurisé par carte bleue</p>
+
+                            <img src="https://www.croqui.fr/img/mastercard.png" alt="Mastercard">
+
+                            <img src="https://www.croqui.fr/img/visa.png" alt="Visa">
+
+                            <img src="https://www.croqui.fr/img/maestro.png" alt="Maestro">
+
+                        </div>
+
+                        <hr /><br />
+
+                        <form action="https://www.croqui.fr/paiement/" method="post" id="payment-form">
+
+                            <div class="form-row">
+
+                                <div style="text-align:left;margin:0 30px;">N° de carte :<span style="float:right;">Date d'expiration</span></div>
+
+                                <div id="card-element"></div>
+
+                                <br />
+
+                                <div id="card-errors"></div>
+
+                            </div>
+
+                            <br />
+
+                            <button type="submit">Confirmer le paiement</button>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="row">
+
+                        <div>
+
+                            <p class="bouton-retour"><a href="https://www.croqui.fr/coordonnees/">&laquo;  Retour aux coordonnées</a></p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

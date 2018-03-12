@@ -1,0 +1,31 @@
+<div class="selectdiv heure">
+
+    <select id="heure" name="heure">
+
+        {% if today and "now"|date("N") == 7 and "now"|date("H") >= 10 and "now"|date("H") < 15 %}
+            <option {% if app.session.get('heure') == "now" %}selected{% endif %} value="now">Immédiatement</option>
+        {% endif %}
+
+        {% if today b-xor "now"|date("H") >= 10 %}
+            <option {% if app.session.get('heure') == "10H et 11H" %}selected{% endif %} value="10H et 11H">Entre 10H et 11H</option>
+        {% endif %}
+
+        {% if today b-xor "now"|date("H") >= 11 %}
+            <option {% if app.session.get('heure') == "11H et 12H" %}selected{% endif %} value="10H et 11H">Entre 11H et 12H</option>
+        {% endif %}
+
+        {% if today b-xor "now"|date("H") >= 12 %}
+            <option {% if app.session.get('heure') == "12H et 13H" %}selected{% endif %} value="10H et 11H">Entre 12H et 13H</option>
+        {% endif %}
+
+        {% if today b-xor "now"|date("H") >= 13 %}
+            <option {% if app.session.get('heure') == "13H et 14H" %}selected{% endif %} value="10H et 11H">Entre 13H et 14H</option>
+        {% endif %}
+
+        {% if today b-xor "now"|date("H") >= 14 %}
+            <option {% if app.session.get('heure') == "14H et 15H" %}selected{% endif %} value="10H et 11H">Entre 14H et 15H</option>
+        {% endif %}
+
+    </select>
+
+</div>

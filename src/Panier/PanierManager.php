@@ -169,6 +169,7 @@ class PanierManager
                       'total' => $total,
                       'typeFormule' => $typeFormule,
                       'nbSupplements' => $nbSupplements,
+                      'sommeSupplements' => $somme_supplements,
                       'phrase' => $phrase
                      ];
 

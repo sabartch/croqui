@@ -1,0 +1,18 @@
+{# src/Commande/panier-vide.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <section class="height-80 page-title">
+        <div class="container pos-vertical-center">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2>Le panier est vide !</h2>
+                    <a class="btn" href="{{ path('carte') }}"><span class="btn__text">Explorer la carte des gourmandises</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -4,8 +4,6 @@
 
 {% block body %}
 
-    {% if app.session.get('panier')|length > 0 %}
-
         <section class="height-40 page-title">
             <div class="container pos-vertical-center">
                 <div class="row">
@@ -15,7 +13,6 @@
                 </div>
             </div>
         </section>
-
 
         <section class="shop-checkout">
             <div class="container">
@@ -63,24 +60,24 @@
 
                         <div class="bg--white recap text-center box-shadow-clean" style="font-size:0.9em;font-weight:500;color:black;">
 
-                            <p>Formule {% if formule.typeFormule == 1 %}Solo{% else %}Duo{% endif %} : <b>{% if formule.typeFormule == 1 %}{{ prix_formule_1|number_format(2, '.', ',') }}{% elseif formule.typeFormule == 2 %}{{ prix_formule_2|number_format(2, '.', ',') }}{% endif %} €</b></p>
+                            <p>Formule {% if formule.typeFormule == 1 %}Solo{% else %}Duo{% endif %} : <b>{% if formule.typeFormule == 1 %}{{ prix_formule_1|number_format(2, ',', ' ') }}{% elseif formule.typeFormule == 2 %}{{ prix_formule_2|number_format(2, '.', ',') }}{% endif %} €</b></p>
 
-                            {% if formule.nbSupplements > 0 %}<p>Gourmandises en plus : <b>{{ formule.nbSupplements }} x {{ prix_supplement }} &euro;</b></p>{% endif %}
+                            {% if formule.nbSupplements > 0 %}<p>Gourmandises en plus : <{{ prix_formule_1|number_format(2, ',', ' ') }}b>{{ formule.nbSupplements }} x {{ prix_supplement }} &euro;</b></p>{% endif %}
 
-                            <? if($total_addon > 0){ ?><p>Suppléments : <b><? echo number_format($total_addon, 0, ',', ' ') ?> €</b></p><? } ?>
+                            {% if formule.sommeSupplements > 0 %}<p>Suppléments : <b>{{ formule.sommeSupplements|number_format(2, ',', ' ') }} €</b></p>{% endif %}
 
                             <!--<? if(!empty($reduc)){ ?><p>Réduction : <b><? if(is_numeric($reduc)){ echo number_format($reduc, 2, ',', ' ')." &euro;"; } else { echo $reduc; } ?></b></p><? } ?>-->
 
                             <p>Livraison : <b>Gratuite</b></p>
 
-                            <form action="https://www.croqui.fr/<? if(isset($_SESSION["email"]) AND isset($_SESSION["adresse"])){echo "confirmation";}else{echo "coordonnees";} ?>/" method="post">
+                            <form action="{{ path('email') }}" method="post">
 
                             <div class="selectdiv date">
                                 <select id="date" name="date">
-                                    <? if(date("N") == 7){ if(date("H") < 15){ ?><option <? if($_SESSION['date'] == date('N/j/n/Y')){echo "selected";} ?> value="<? echo date('N/j/n/Y'); ?>">Aujourd'hui</option><? }} ?>
-                                    <? if(date("N") == 6){ ?><option <? if($_SESSION['date'] == date('N/j/n/Y', strtotime('+1 day'))){echo "selected";} ?> value="<? echo date('N/j/n/Y', strtotime('+1 day')); ?>">Demain</option><? } ?>
-                                    <? if(date("N") <= 5){ ?><option <? if($_SESSION['date'] == date('N/j/n/Y', strtotime("next Sunday"))){echo "selected";} ?> value="7/<? echo date('j/n/Y', strtotime("next Sunday")); ?>">Ce dimanche</option><? } ?>
-                                    <option <? if($_SESSION['date'] == date('N/j/n/Y', strtotime("Sunday next week"))){echo "selected";} ?> value="7/<? echo date('j/n/Y', strtotime("Sunday next week")); ?>">Dimanche prochain</option>
+                                    {% if ("now"|date("N") == 7) and ("now"|date("H") < 15) %}<option value="{{ "now"|date("N/j/n/Y") }}" {% if app.session.get('date') == "now"|date("N/j/n/Y") %}selected{% endif %}>Aujourd'hui</option>{% endif %}
+                                    {% if ("now"|date("N") == 6) %}<option value="{{ "+1day"|date("N/j/n/Y") }}" {% if app.session.get('date') == "+1day"|date("N/j/n/Y") %}selected{% endif %}>Demain</option>{% endif %}
+                                    <option value="7/{{ "next Sunday"|date("j/n/Y") }}" {% if app.session.get('date') == "next Sunday"|date("N/j/n/Y") %}selected{% endif %}>Ce dimanche</option>
+                                    <option value="7/{{ "Sunday next week"|date("j/n/Y") }}" {% if app.session.get('date') == "Sunday next week"|date("N/j/n/Y") %}selected{% endif %}>Dimanche prochain</option>
                                 </select>
                             </div>
 
@@ -88,15 +85,9 @@
 
                             <div style="clear:both;"></div>
 
-                            <!--<div style="font-weight:bold;font-size:0.8em;text-align:center;background-color:#c0392b;color:white;padding:5px;margin-top:10px;border-radius:8px;">Dimanche 5 octobre : réservations complètes</div>-->
+                            <br /><br />
 
-                            <!--<hr />--><br /><br />
-
-                            <p style="color:black;">Total : <b><?
-					                $tronq = floor($total);
-					                if(($total-$tronq) > 0){ echo number_format($total, 2, ',', ' '); }
-                                    else { echo number_format($total, 0, ',', ' '); }
-                                    ?> €</b></p>
+                            <p style="color:black;">Total : <b>{% if formule.total-(formule.total|round(2, 'floor')) > 0 %}{{ formule.total|number_format(2, ',', ' ') }}{% else %}{{ formule.total|number_format(0, ',', ' ') }}{% endif %} €</b></p>
                             <br />
                             <button class="validation_panier" type="submit">Valider le panier</button>
 
@@ -144,20 +135,5 @@
                     </div>
                 </div>
         {% endif %}
-
-    {% else %}
-
-        <section class="height-80 page-title">
-            <div class="container pos-vertical-center">
-                <div class="row">
-                    <div class="col-sm-12 text-center">
-                        <h2>Le panier est vide !</h2>
-                        <a class="btn" href="{{ path('carte') }}"><span class="btn__text">Explorer la carte des gourmandises</span></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    {% endif %}
 
 {% endblock %}
