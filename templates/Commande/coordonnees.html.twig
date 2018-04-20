@@ -36,145 +36,45 @@
 
                     <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0">
 
-                        <form class="" action="{{ path('confirmation') }}" method="post" id="subForm" data-error="Pour le livreur, veillez à remplir tous les champs :)" data-success="Merci !">
-
-                            <input id="fieldMail" name="email" type="hidden" value="<? echo $maillog; ?>" />
-
-                            <div class="input-with-icon">
-
-                                <label for="fieldName">Nom et prénom</label>
-
-                                <i class="icon icon-Male-2"></i>
-
-                                <input id="fieldName" name="nom" type="text" value="<? echo $nom ?>" />
-
-                            </div>
-
-                            <div class="input-with-icon">
-
-                                <label for="fieldAdresse">Adresse (N° et rue)</label>
-
-                                <i class="icon icon-Map-Marker2"></i>
-
-                                <input id="fieldAdresse" name="adresse" type="text" value="<? echo $adresse; ?>" required />
-
-                            </div>
-
-
-                            <div class="input-with-icon">
-
-                                <label for="fieldPrecisions">Précisions (code porte, étage...)</label>
-
-                                <i class="icon icon-Direction-East"></i>
-
-                                <input id="fieldPrecisions" name="precisions" type="text" value="<? echo $precisions; ?>" />
-
-                            </div>
-
-
-                            <div class="input-with-icon">
-
-                                <label for="fieldCodepostal">Code postal</label>
-
-                                <span class="cpform">
-
-										<SELECT name="codepostal" class="arrondissement" style="background-color:white;">
-
-										<optgroup label="PARIS">
-
-										<OPTION <? if($codepostal == "75001 - PARIS"){echo 'selected="selected"';} ?>>75001 - PARIS
-
-										<OPTION <? if($codepostal == "75002 - PARIS"){echo 'selected="selected"';} ?>>75002 - PARIS
-
-										<OPTION <? if($codepostal == "75003 - PARIS"){echo 'selected="selected"';} ?>>75003 - PARIS
-
-										<OPTION <? if($codepostal == "75004 - PARIS"){echo 'selected="selected"';} ?>>75004 - PARIS
-
-										<OPTION <? if($codepostal == "75005 - PARIS"){echo 'selected="selected"';} ?>>75005 - PARIS
-
-										<OPTION <? if($codepostal == "75006 - PARIS"){echo 'selected="selected"';} ?>>75006 - PARIS
-
-										<OPTION <? if($codepostal == "75007 - PARIS"){echo 'selected="selected"';} ?>>75007 - PARIS
-
-										<OPTION <? if($codepostal == "75008 - PARIS"){echo 'selected="selected"';} ?>>75008 - PARIS
-
-										<OPTION <? if($codepostal == "75009 - PARIS"){echo 'selected="selected"';} ?>>75009 - PARIS
-
-										<OPTION <? if($codepostal == "75010 - PARIS"){echo 'selected="selected"';} ?>>75010 - PARIS
-
-										<OPTION <? if($codepostal == "75011 - PARIS"){echo 'selected="selected"';} ?>>75011 - PARIS
-
-										<OPTION <? if($codepostal == "75012 - PARIS"){echo 'selected="selected"';} ?>>75012 - PARIS
-
-										<OPTION <? if($codepostal == "75013 - PARIS"){echo 'selected="selected"';} ?>>75013 - PARIS
-
-										<OPTION <? if($codepostal == "75014 - PARIS"){echo 'selected="selected"';} ?>>75014 - PARIS
-
-										<OPTION <? if($codepostal == "75015 - PARIS"){echo 'selected="selected"';} ?>>75015 - PARIS
-
-										<OPTION <? if($codepostal == "75016 - PARIS"){echo 'selected="selected"';} ?>>75016 - PARIS
-
-										<OPTION <? if($codepostal == "75017 - PARIS"){echo 'selected="selected"';} ?>>75017 - PARIS
-
-										<OPTION <? if($codepostal == "75018 - PARIS"){echo 'selected="selected"';} ?>>75018 - PARIS
-
-										<OPTION <? if($codepostal == "75019 - PARIS"){echo 'selected="selected"';} ?>>75019 - PARIS
-
-										<OPTION <? if($codepostal == "75020 - PARIS"){echo 'selected="selected"';} ?>>75020 - PARIS
-
-										</optgroup>
-
-										<optgroup label="HAUTS DE SEINE">
-
-										<OPTION <? if($codepostal == "92100 - BOULOGNE BILLANCOURT"){echo 'selected="selected"';} ?>>92100 - BOULOGNE BILLANCOURT
-
-										<OPTION <? if($codepostal == "92120 - MONTROUGE"){echo 'selected="selected"';} ?>>92120 - MONTROUGE
-
-										<OPTION <? if($codepostal == "92130 - ISSY LES MOULINEAUX"){echo 'selected="selected"';} ?>>92130 - ISSY LES MOULINEAUX
-
-										<OPTION <? if($codepostal == "92150 - SURESNES"){echo 'selected="selected"';} ?>>92150 - SURESNES
-
-										<OPTION <? if($codepostal == "92170 - VANVES"){echo 'selected="selected"';} ?>>92170 - VANVES
-
-										<OPTION <? if($codepostal == "92240 - MALAKOFF"){echo 'selected="selected"';} ?>>92240 - MALAKOFF
-
-										</optgroup>
-
-										<optgroup label="VAL DE MARNE">
-
-										<OPTION <? if($codepostal == "94110 - ARCUEIL"){echo 'selected="selected"';} ?>>94110 - ARCUEIL
-
-										<OPTION <? if($codepostal == "94200 - IVRY SUR SEINE"){echo 'selected="selected"';} ?>>94200 - IVRY SUR SEINE
-
-										<OPTION <? if($codepostal == "94220 - CHARENTON LE PONT"){echo 'selected="selected"';} ?>>94220 - CHARENTON LE PONT
-
-										<OPTION <? if($codepostal == "94230 - CACHAN"){echo 'selected="selected"';} ?>>94230 - CACHAN
-
-										<OPTION <? if($codepostal == "94250 - GENTILLY"){echo 'selected="selected"';} ?>>94250 - GENTILLY
-
-										<OPTION <? if($codepostal == "94270 - LE KREMLIN BICETRE"){echo 'selected="selected"';} ?>>94270 - LE KREMLIN BICETRE
-
-										</optgroup>
-
-										</SELECT>
-
-										</span>
-
-                            </div>
-
-                            <div class="input-with-icon">
-
-                                <label for="fieldTel">Téléphone</label>
-
-                                <i class="icon icon-Telephone"></i>
-
-                                <input id="fieldTel" name="tel" type="text" value="<? echo $telephone; ?>" required />
-
-                            </div>
-
-                            <button class="col-xs-12 btn btn--primary" style="font-weight:bold;" type="submit">Valider</button>
-
-                        </form>
+                        {{ form_start(form, {'attr': {'id': 'subForm', 'data-error': 'Pour le livreur, veillez à remplir tous les champs :)', 'data-success': 'Merci !'}}) }}
+
+                        {{ form_errors(form) }}
+
+                        <div class="input-with-icon">
+                            {{ form_label(form.nom, "Nom et prénom") }}
+                            <i class="icon icon-Male-2"></i>
+                            {{ form_widget(form.nom) }}
+                        </div>
+
+                        <div class="input-with-icon">
+                            {{ form_label(form.adresse, "Adresse (N° et rue)") }}
+                            <i class="icon icon-Map-Marker2"></i>
+                            {{ form_widget(form.adresse) }}
+                        </div>
+
+                        <div class="input-with-icon">
+                            {{ form_label(form.precisions, "Précisions (code porte, étage...)") }}
+                            <i class="icon icon-Direction-East"></i>
+                            {{ form_widget(form.precisions) }}
+                        </div>
+
+                        <div class="input-with-icon">
+                            {{ form_label(form.cp, "Code postal") }}
+                            <span class="cpform">
+                            {{ form_widget(form.cp, {'attr': {'class': 'arrondissement', 'style':'background-color:white'}}) }}
+                        </div>
+
+                        <div class="input-with-icon">
+                            {{ form_label(form.telephone, "Téléphone") }}
+                            <i class="icon icon-Telephone"></i>
+                            {{ form_widget(form.telephone) }}
+                        </div>
+
+                        {{ form_widget(form.valider, {'attr': {'class': 'col-xs-12 btn btn--primary', 'style':'font-weight:bold'}}) }}
+
+                        {{ form_rest(form) }}
+
+                        {{ form_end(form) }}
 
                     </div>
 
@@ -186,10 +86,7 @@
 
     </div>
 
-    <div>
-        <br />
-        <p class="bouton-retour"><a href="{{ path('email') }}">&laquo;  Modifier l'adresse e-mail</a></p>
-    </div>
+    <div><br /><p class="bouton-retour"><a href="{{ path('email') }}">&laquo;  Modifier l'adresse e-mail</a></p></div>
 
 </section>
 

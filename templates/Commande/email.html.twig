@@ -36,13 +36,17 @@
 
                     <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0">
 
-                        <form action="{{ path('coordonnees') }}" class="form--merge" method="post">
+                        {{ form_start(form, {'attr': {'class': 'form--merge'}}) }}
 
-                            <input id="fieldMail" class="col-sm-8" type="email" name="email" value="arthur@gmail.com" placeholder="adresse@email.com" />
+                        {{ form_errors(form) }}
 
-                            <button class="col-sm-4 btn btn--primary" style="font-weight:bold;" type="submit">Valider</button>
+                        {{ form_widget(form.email, {'attr': {'class': 'col-sm-8', 'placeholder':'adresse@email.com'}}) }}
 
-                        </form>
+                        {{ form_widget(form.valider, {'attr': {'class': 'col-sm-4 btn btn--primary', 'style':'font-weight:bold'}}) }}
+
+                        {{ form_rest(form) }}
+
+                        {{ form_end(form) }}
 
                     </div>
 

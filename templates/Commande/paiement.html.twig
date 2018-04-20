@@ -1,0 +1,211 @@
+{# src/Commande/paiement.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<section class="height-40 page-title">
+
+    <div class="container pos-vertical-center">
+
+        <div class="row">
+
+            <div class="col-sm-12 text-center">
+
+                <h2>Confirmation</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="confirmation">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="row">
+
+                    <div class="col-md-6 hidden-sm-down">
+
+                        <div class="col-xs-12 bg--white confirma text-center">
+
+                            <h5 class="text-center">Addition</h5><hr />
+
+                            <p>Formule : {% if formule.typeFormule == 1 %}Solo{% else %}Duo{% endif %}</p>
+
+                            <p>Gourmandises : {{ app.session.get('panier')|length }}</p>
+
+                            <p>Livraison : Gratuite</p>
+
+                            <span class="hidden-sm-down"><hr /></span>
+
+                            <p>Total TTC : <span style="color:green;"><b>{% if formule.total-(formule.total|round(2, 'floor')) > 0 %}{{ formule.total|number_format(2, ',', ' ') }}{% else %}{{ formule.total|number_format(0, ',', ' ') }}{% endif %} €</b></span></p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="col-xs-12 bg--white confirma text-center">
+
+                            <h5 class="text-center hidden-sm-down">Livraison<hr /></h5>
+
+                            <h5 class="text-center hidden-sm-up">Récap ' de la livraison<hr /></h5>
+
+                            <p>{{ commande.nom }}</p>
+
+                            <p>{{ commande.adresse }}</p>
+
+                            <p>{{ commande.precisions }}</p>
+
+                            <p>{{ commande.cp|replace({'-': ''}) }}</p>
+
+                            <p class="hidden-sm-down">Tel : {{ commande.telephone }}</p>
+
+                            <p class="hidden-sm-up"><br /></p>
+
+                            <p class="hidden-sm-up"><b>{{ app.session.get('date')|infrench|capitalize }}</b></p>
+
+                            <p class="hidden-sm-up"><b>{% if app.session.get('heure') == "now" %} le plus vite possible{% else %} entre {{ app.session.get('heure') }}{% endif %}</b></p>
+
+                            <p class="hidden-sm-up"><br /></p>
+
+                            <p class="hidden-sm-up">Formule : {% if formule.typeFormule == 1 %}Solo{% else %}Duo{% endif %}</p>
+
+                            <p class="hidden-sm-up">Livraison : Gratuite</p>
+
+                            <p class="hidden-sm-up">Total TTC : <span style="color:green;"><b>{% if formule.total-(formule.total|round(2, 'floor')) > 0 %}{{ formule.total|number_format(2, ',', ' ') }}{% else %}{{ formule.total|number_format(0, ',', ' ') }}{% endif %} €</b></span></p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 hidden-sm-down">
+
+                        <div class="col-xs-12 bg--white confirma text-center">
+
+                            <h5 class="text-center">Créneau</h5><hr />
+
+                            <p><br />Livraison chez vous le :</p><p><b>{{ app.session.get('date')|infrench|capitalize }}</b></p>
+
+                            <p>{% if app.session.get('heure') == "now" %} le plus vite possible{% else %} entre {{ app.session.get('heure') }}{% endif %}</p><p><br /></p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="col-xs-12 bg--white confirma text-center">
+
+                            <h5 class="text-center">Compo'</h5><hr />
+
+                            {% for key, produit in panier %}
+
+                                {% if loop.first %}
+                                    {{ produit.nom|capitalize }}
+                                {% else %}
+                                    {{ produit.nom }}
+                                {% endif %}
+
+                                &nbsp;&bullet;&nbsp;
+
+                            {%  endfor %}
+
+                            {% if formule.typeFormule == 1 %}
+                                une demi-baguette
+                            {% else %}
+                                une baguette entière
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div id="carre_paiement" class="col-md-12 bg--white confirma text-center">
+
+                    <h3 class="text-center">Paiement</h3>
+
+                    <hr />
+
+                    <div>
+
+                        <p><i class="icon icon--xs icon-Lock"></i> Paiement sécurisé par carte bleue</p>
+
+                        <img src="https://www.croqui.fr/img/mastercard.png" alt="Mastercard">
+
+                        <img src="https://www.croqui.fr/img/visa.png" alt="Visa">
+
+                        <img src="https://www.croqui.fr/img/maestro.png" alt="Maestro">
+
+                    </div>
+
+                    <hr /><br />
+
+                    <form action="{{ path('confirmation') }}" method="post" id="payment-form">
+
+                        <div class="form-row">
+
+                            <div style="text-align:left;margin:0 30px;">N° de carte :<span style="float:right;">Date d'expiration</span></div>
+
+                            <div id="card-element"></div>
+
+                            <br />
+
+                            <div id="card-errors"></div>
+
+                        </div>
+
+                        <br />
+
+                        <button type="submit">Confirmer le paiement</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="row">
+
+                    <div>
+
+                        <p class="bouton-retour"><a href="{{ path('coordonnees') }}">&laquo;  Retour aux coordonnées</a></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -33,7 +33,7 @@ class PanierManager
             throw new NotFoundHttpException('Le produit ajouté n\'existe pas.');
         }
 
-        // Récupération du paramètre de session Panier.
+        // Récupération de la session Panier.
         $panier = $this->session->get('panier');
 
         // On insère les données produit sous forme d'array dans le paramètre Panier qui est lui-même un array.
