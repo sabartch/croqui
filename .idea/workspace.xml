@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4609a144-0b6a-4e46-a22c-d7b7908402d1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Client.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Commande.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Twig/AppExtension.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Commande/paiement.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/croqui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/croqui.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/translation.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/translation.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommandeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommandeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PanierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PanierController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Panier/PanierManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panier/PanierManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Commande/coordonnees.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Commande/coordonnees.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Commande/email.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Commande/email.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="4609a144-0b6a-4e46-a22c-d7b7908402d1" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +21,8 @@
               <caret line="46" column="60" selection-start-line="46" selection-start-column="60" selection-end-line="46" selection-end-column="60" />
               <folding>
                 <element signature="e#30#95#0#PHP" expanded="true" />
-                <marker date="1522760431660" expanded="true" signature="5493:5509" ph="..." />
-                <marker date="1522760431660" expanded="true" signature="6026:6042" ph="..." />
+                <marker date="1524234410540" expanded="true" signature="5493:5509" ph="..." />
+                <marker date="1524234410540" expanded="true" signature="6026:6042" ph="..." />
               </folding>
             </state>
           </provider>
@@ -69,11 +52,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paiement.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="paiement.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Commande/paiement.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="197" selection-start-line="197" selection-end-line="197" />
+            <state relative-caret-position="332">
+              <caret line="202" column="18" selection-start-line="202" selection-start-column="18" selection-end-line="202" selection-end-column="18" />
+              <folding>
+                <element signature="e#51#65#0#Twig" expanded="true" />
+                <element signature="e#4191#4197#0#HTML" expanded="true" />
+                <element signature="e#4197#4205#0#HTML" expanded="true" />
+                <element signature="e#4205#4211#0#HTML" expanded="true" />
+                <element signature="e#6164#6171#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -305,28 +304,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="croqui" type="cbb8eebc:String" user="croqui" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="croqui" type="cbb8eebc:String" user="croqui" />
-              <item name="src" type="cbb8eebc:String" user="src" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="croqui" type="cbb8eebc:String" user="croqui" />
-              <item name="src" type="cbb8eebc:String" user="src" />
-              <item name="Controller" type="cbb8eebc:String" user="Controller" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -385,6 +362,28 @@
               <item name="croqui" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Commande" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="croqui" type="cbb8eebc:String" user="croqui" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="croqui" type="cbb8eebc:String" user="croqui" />
+              <item name="src" type="cbb8eebc:String" user="src" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="croqui" type="cbb8eebc:String" user="croqui" />
+              <item name="src" type="cbb8eebc:String" user="src" />
+              <item name="Controller" type="cbb8eebc:String" user="Controller" />
             </path>
           </expand>
           <select />
@@ -476,6 +475,7 @@
       <workItem from="1522831686919" duration="184000" />
       <workItem from="1522831911826" duration="186000" />
       <workItem from="1522832137095" duration="11000" />
+      <workItem from="1524468802550" duration="343000" />
     </task>
     <task id="LOCAL-00001" summary="Version initiale sous Symfony 4 au 31.12.2017">
       <created>1520269288728</created>
@@ -509,7 +509,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228846000" />
+    <option name="totallyTimeSpent" value="229189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -540,19 +540,19 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17715959" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.328594" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.328594" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.328594" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.328594" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32755905" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.328594" />
@@ -604,13 +604,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/Commande/paiement.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3349">
-          <caret line="197" selection-start-line="197" selection-end-line="197" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/BaseController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1207">
@@ -641,8 +634,8 @@
           <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
             <element signature="e#30#95#0#PHP" expanded="true" />
-            <marker date="1522760431660" expanded="true" signature="5493:5509" ph="..." />
-            <marker date="1522760431660" expanded="true" signature="6026:6042" ph="..." />
+            <marker date="1524234410540" expanded="true" signature="5493:5509" ph="..." />
+            <marker date="1524234410540" expanded="true" signature="6026:6042" ph="..." />
           </folding>
         </state>
       </provider>
@@ -893,9 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <element signature="e#57#94#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -905,8 +895,8 @@
           <caret line="46" column="60" selection-start-line="46" selection-start-column="60" selection-end-line="46" selection-end-column="60" />
           <folding>
             <element signature="e#30#95#0#PHP" expanded="true" />
-            <marker date="1522760431660" expanded="true" signature="5493:5509" ph="..." />
-            <marker date="1522760431660" expanded="true" signature="6026:6042" ph="..." />
+            <marker date="1524234410540" expanded="true" signature="5493:5509" ph="..." />
+            <marker date="1524234410540" expanded="true" signature="6026:6042" ph="..." />
           </folding>
         </state>
       </provider>
@@ -971,8 +961,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Commande/paiement.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="197" selection-start-line="197" selection-end-line="197" />
+        <state relative-caret-position="332">
+          <caret line="202" column="18" selection-start-line="202" selection-start-column="18" selection-end-line="202" selection-end-column="18" />
+          <folding>
+            <element signature="e#51#65#0#Twig" expanded="true" />
+            <element signature="e#4191#4197#0#HTML" expanded="true" />
+            <element signature="e#4197#4205#0#HTML" expanded="true" />
+            <element signature="e#4205#4211#0#HTML" expanded="true" />
+            <element signature="e#6164#6171#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
         </state>
       </provider>
     </entry>
