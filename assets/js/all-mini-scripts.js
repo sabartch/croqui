@@ -34,3 +34,4 @@ $('#codepostal').on('change', function() {
     var valueSelected = this.value.slice(8);
 	$('#cok').hide().html(valueSelected+ ' : ok &#10004;').fadeIn('slow');
 })
+

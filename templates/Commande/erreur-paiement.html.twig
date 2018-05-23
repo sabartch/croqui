@@ -1,0 +1,40 @@
+{# src/Commande/erreur-paiement.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <section class="height-70 page-title">
+
+        <div class="container pos-vertical-center">
+
+            <div class="row">
+
+                <div class="col-sm-12 text-center">
+
+                    <h3>Zut...</h3>
+                    <br />
+                    <p>La banque n'a pas accepté le paiement :</p><br />
+
+                    {% for error in errors %}
+
+                        <div class='erreur_banque'>{{ error }}</div>
+
+                    {% endfor %}
+
+                    <div>
+                        <br /><br />
+                        <a class="btn btn--lg btn--primary" href="{{ path('paiement') }}">
+                            <span class="btn__text">Réessayer</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

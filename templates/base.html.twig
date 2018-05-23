@@ -23,11 +23,10 @@
     <meta name="theme-color" content="#ffffff">
 
     {% block stylesheets %}
-
-
         <link href="https://www.croqui.fr/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
         <link href="https://www.croqui.fr/css/theme.css" rel="stylesheet" type="text/css" media="all" />
         <link href="https://www.croqui.fr/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+
         <link href='https://fonts.googleapis.com/css?family=Nunito:600%7CQuicksand:400,500,700' rel='stylesheet' type='text/css'>
     {% endblock %}
 
@@ -39,8 +38,8 @@
 <div class="loader"></div>
 
 <!-- BARRE NAVIGATION -->
-<nav class="">
-    <div class="nav-bar" data-fixed-at="200">
+<nav class="nav--fixed">
+    <div data-fixed-at="200" class="nav-bar {% if navtransparent is defined %}nav--transparent {% endif %}{% if navfixed is defined %}nav--fixed {% endif %}{% if navnotabsolute is not defined %}nav--absolute{% endif %}">
         <div class="nav-module logo-module left">
             <a href="{{ path('homepage') }}">
                 <img class="logo logo-dark" style="max-width:50%" alt="Croqui : la livraison de brunch à domicile sur Paris" src="https://www.croqui.fr/img/logo/logo-gris/PNG/logo-gris-45.png" />
@@ -58,7 +57,7 @@
                     <a href="{{ path('ccm') }}">Comment ça marche </a>
                 </li>
                 <li class="vpf">
-                    <a href="{{ path('homepage') }}">Mon compte</a>
+                    <a href="{{ path('compte') }}">Mon compte</a>
                 </li>
             </ul>
 
@@ -184,22 +183,23 @@
 
 
 
-<!--<script src="https://js.stripe.com/v3/"></script>-->
-<script src="https://www.croqui.fr/js/paiement.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
 
+<script src="https://www.croqui.fr/js/paiement.js"></script>
 <script src="https://www.croqui.fr/js/jquery-2.1.4.min.js"></script>
 <script src="https://www.croqui.fr/js/all-mini-scripts.js"></script>
 <script src="https://www.croqui.fr/js/scripts.min.js"></script>
+
 <script>responsiveLazyload.lazyLoadImages();</script>
 
 <script>
-$(document).ready(function(){
+    $(document).ready(function(){
 
-    $("#la-carte").on('click', 'div.ajout-rapide', function() { // Evènement jquery : clic sur bouton d'ajout au panier.
+        $("#la-carte").on('click', 'div.ajout-rapide', function() { // Evènement jquery : clic sur bouton d'ajout au panier.
 
-        $(this).next('.cumul').show().delay(800).fadeOut("slow"); // Affichage du petit "+1" sur la carte lors de l'ajout.
+            $(this).next('.cumul').show().delay(800).fadeOut("slow"); // Affichage du petit "+1" sur la carte lors de l'ajout.
 
-        var codep = $(this).attr("data-id"); // Récupération de l'id produit de la carte.
+            var codep = $(this).attr("data-id"); // Récupération de l'id produit de la carte.
 
             $.ajax({
                 url: "{{ path('add_panier') }}", // On envoie la requête à la fonction addPanier() de PanierController.
@@ -216,56 +216,55 @@ $(document).ready(function(){
                 $("#lePanier").addClass('notification--reveal'); // Réapparition de la colonne panier lors de l'ajout produit.
 
             });
-    });
-
-    $("#shopping-cart-results").on('click', 'div.item__remove', function() { // Evènement jquery : clic sur la croix de suppression du panier.
-
-        $(this).parent().fadeOut(); // Disparition du produit de la liste.
-
-        var pcode = $(this).attr("data-code"); // Récupération du key du panier.
-
-        $.ajax({
-            url: "{{ path('delete_panier') }}", // On envoie la requête à la fonction deletePanier() de PanierController.
-            method: "post",
-            data: {"key":pcode}
-        }).done(function(){
-
-            $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" );
-
-            $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");
-
-        });
-    });
-
-    $("#shopping-cart-results").on('click', 'span.optionf', function() {
-
-        var pcode = $(this).attr("data-code");
-
-        $.ajax({
-            url: "{{ path('show_panier') }}", // On envoie la requête à la fonction showPanier() de PanierController.
-            method: "post",
-            data: {"f":pcode}
-        }).done(function(){
-
-            $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" );
-
-            $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");
-
         });
 
+        $("#shopping-cart-results").on('click', 'div.item__remove', function() { // Evènement jquery : clic sur la croix de suppression du panier.
+
+            $(this).parent().fadeOut(); // Disparition du produit de la liste.
+
+            var pcode = $(this).attr("data-code"); // Récupération du key du panier.
+
+            $.ajax({
+                url: "{{ path('delete_panier') }}", // On envoie la requête à la fonction deletePanier() de PanierController.
+                method: "post",
+                data: {"key":pcode}
+            }).done(function(){
+
+                $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" );
+
+                $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");
+
+            });
+        });
+
+        $("#shopping-cart-results").on('click', 'span.optionf', function() {
+
+            var pcode = $(this).attr("data-code");
+
+            $.ajax({
+                url: "{{ path('show_panier') }}", // On envoie la requête à la fonction showPanier() de PanierController.
+                method: "post",
+                data: {"f":pcode}
+            }).done(function(){
+
+                $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" );
+
+                $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");
+
+            });
+
+        });
+
     });
 
-});
 
+    $("#calendar").load("{{ path('calendrier') }}");
 
-$("#calendar").load("{{ path('calendrier') }}");
-
-$( "#date" ).change(function() {
-    $( "#date option:selected" ).each(function() {
-        $("#calendar").load("{{ path('calendrier') }}", { choice : $(this).val() });
-    });
-})
-
+    $( "#date" ).change(function() {
+        $( "#date option:selected" ).each(function() {
+            $("#calendar").load("{{ path('calendrier') }}", { choice : $(this).val() });
+        });
+    })
 </script>
 
 </body>

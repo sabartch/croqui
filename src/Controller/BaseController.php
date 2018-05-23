@@ -44,7 +44,7 @@ class BaseController extends Controller
      */
     public function ccm()
     {
-        return $this->render('Base/ccm');
+        return $this->render('Base/ccm.html.twig');
     }
 
     /**

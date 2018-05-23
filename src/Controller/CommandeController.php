@@ -5,16 +5,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Panier\PanierManager;
 use App\Entity\Produit;
-use App\Entity\Client;
-use App\Entity\Commande;
+use App\Service\PaymentStripe;
+use App\Service\CoordonneesForm;
+use App\Service\ClientForm;
 
 class CommandeController extends Controller
 {
@@ -79,104 +75,64 @@ class CommandeController extends Controller
     /**
      * @Route("/email/", name="email")
      */
-    public function email(Request $request)
+    public function email(Request $request, ClientForm $client)
     {
-        $client = new Client(); // Création d'un objet Client pour générer un formulaire "email"
 
-        $form = $this->get('form.factory')->createBuilder(FormType::class, $client) // Création du formulaire
-            ->add('email',    EmailType::class)
-            ->add('valider',  SubmitType::class)
-            ->getForm();
-
-        $form->handleRequest($request); // Récupération de la requête
-
-        /*** Si on provient de la page Email remplie ***/
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $client = $form->getData(); // Récupération de l'email rentré par le visiteur
-
-            $this->session->set('client', $client); // Mise en session du client
-
-            // ICI RECUPERATION DONNEES CLIENT SI DEJA EXISTANT
-
-            return $this->redirectToRoute('coordonnees'); // On passe à l'étape suivante
+        /* Vérification que les horaires de livraison ont bien été sélectionnés par le visiteur à son arrivée sur la page Email */
+        if(null !== $request->request->get('date')){
+            $this->session->set('date', $request->request->get('date'));
         }
 
-        /*** Si on provient de la page Commande ***/
-        $choix_date = $request->request->get('date'); // Récupération de la date choisie dans la liste déroulante
-        $choix_heure = $request->request->get('heure'); // Récupération de l'heure choisie dans la liste déroulante
+        if(null !== $request->request->get('heure')){
+            $this->session->set('heure', $request->request->get('heure'));
+        }
 
-        if(null === $choix_date OR null === $choix_heure) {
+        if(null === $this->session->get('date') OR null === $this->session->get('heure')){
             return $this->redirectToRoute('commande'); // Si date et heure non renseignées, on revient sur la page précédente pour les choisir.
         }
-        else // Si tout est ok, mise en session des date/heure de livraison
-        {
-            $this->session->set('date', $choix_date);
-            $this->session->set('heure', $choix_heure);
+        /* Fin de la vérification */
+
+        $form = $client->GenerateForm(); // Appel au Service ClientForm
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->session->set('client', $form->getData()); // Si on provient de la page Email remplie, retourne un array contenant l'email
+
+            return $this->redirectToRoute('coordonnees'); // On passe à l'étape suivante du tunnel de commande
+
+        }
+        else {
+
+            /* Si l'adresse mail n'est pas encore renseignée, on affiche le formulaire (retourne un objet FormView) */
+            return $this->render('Commande/email.html.twig', array('form' => $form->createView()));
+
         }
 
-        return $this->render('Commande/email.html.twig', array('form' => $form->createView()));
     }
 
     /**
      * @Route("/coordonnees/", name="coordonnees")
      */
-    public function coordonnees(Request $request)
+    public function coordonnees(Request $request, CoordonneesForm $coordonnees)
     {
-        $commande = new Commande(); // Création d'un objet Commande pour générer le formulaire de livraison
 
-        $form = $this->get('form.factory')->createBuilder(FormType::class, $commande) // Création du formulaire
-                ->add('nom', TextType::class)
-                ->add('adresse', TextType::class)
-                ->add('precisions', TextType::class)
-                ->add('cp', ChoiceType::class, array(
-                    'choices' => array(
-                        'PARIS' => array(
-                    '75001 - PARIS' => '75001 - PARIS',
-                    '75002 - PARIS' => '75002 - PARIS',
-                    '75003 - PARIS' => '75003 - PARIS',
-                    '75004 - PARIS' => '75004 - PARIS',
-                    '75005 - PARIS' => '75005 - PARIS',
-                    '75006 - PARIS' => '75006 - PARIS',
-                    '75007 - PARIS' => '75007 - PARIS',
-                    '75008 - PARIS' => '75008 - PARIS',
-                    '75009 - PARIS' => '75009 - PARIS',
-                    '75010 - PARIS' => '75010 - PARIS',
-                    '75011 - PARIS' => '75011 - PARIS',
-                    '75012 - PARIS' => '75012 - PARIS',
-                    '75013 - PARIS' => '75013 - PARIS',
-                    '75014 - PARIS' => '75014 - PARIS',
-                    '75015 - PARIS' => '75015 - PARIS',
-                    '75016 - PARIS' => '75016 - PARIS',
-                    '75017 - PARIS' => '75017 - PARIS',
-                    '75018 - PARIS' => '75018 - PARIS',
-                    '75019 - PARIS' => '75019 - PARIS',
-                    '75020 - PARIS' => '75020 - PARIS'
-                    ),
-                        'HAUTS DE SEINE ' => array(
-                    '92100 - BOULOGNE BILLANCOURT' => '92100 - BOULOGNE BILLANCOURT',
-                    '92120 - MONTROUGE' => '92120 - MONTROUGE',
-                    '92130 - ISSY LES MOULINEAUX' => '92130 - ISSY LES MOULINEAUX',
-                    '92150 - SURESNES' => '92150 - SURESNES',
-                    '92170 - VANVES' => '92170 - VANVES',
-                    '92240 - MALAKOFF' => '92240 - MALAKOFF'
-                ))))
-            ->add('telephone', TextType::class)
-            ->add('valider',  SubmitType::class)
-            ->getForm();
+        $form = $coordonnees->GenerateForm();
 
-        $form->handleRequest($request); // Récupération de la requête
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($form->isSubmitted() && $form->isValid()) { // Si on provient de la page Coordonnées remplie
+            $this->session->set('commande', $form->getData()); // Si on provient de la page Coordonnées remplie, retourne un array contenant les coordonnées
 
-            $commande = $form->getData(); // Récupération des coordonnées entrées
-            $this->session->set('commande', $commande); // Mise en session des coordonnées de la commande
+            return $this->redirectToRoute('paiement'); // On passe à l'étape suivante du tunnel de commande
 
-            return $this->redirectToRoute('paiement'); // On passe à l'étape suivante
         }
 
+        /* Si les coordonnées ne sont pas renseignées, on affiche le formulaire (retourne un objet FormView) */
         return $this->render('Commande/coordonnees.html.twig', array('form' => $form->createView()));
+
     }
 
     /**
@@ -186,11 +142,9 @@ class CommandeController extends Controller
     {
         $commande = $this->session->get('commande'); // Récupération de la session Commande (coordonnées de livraison)
 
-        // Appel à PanierManager pour la récupération du Panier en session et calcul de la formule/prix.
-        $formule = $panier->calculFormule(null);
+        $formule = $panier->calculFormule(null); // Appel à PanierManager pour la récupération du Panier en session et calcul de la formule/prix.
 
-        // Extraction de la key Panier (elle-même array) pour une meilleure gestion dans Twig.
-        $panier = $formule['panier'];
+        $panier = $formule['panier']; // Extraction de la key Panier (elle-même array) pour une meilleure gestion dans Twig.
 
         if(empty($panier)){
             return $this->redirectToRoute('panier-vide'); // Si array panier vide, redirection vers la carte.
@@ -202,9 +156,36 @@ class CommandeController extends Controller
     /**
      * @Route("/confirmation/", name="confirmation")
      */
-    public function confirmation(Request $request)
+    public function confirmation(PaymentStripe $paiement, PanierManager $panier)
     {
-        return $this->render('Commande/confirmation.html.twig');
+
+        $formule = $panier->calculFormule(null); // Récupération du montant total à payer
+        $amount = $formule['total'] * 100; // Multiplication par 100 pour obtenir le montant à payer en centimes
+        $nom = $this->session->get('commande')->getNom(); // Appel au getter de App/Entity/Commande
+        $email = $this->session->get('client')->getEmail(); // Appel au getter de App/Entity/Client
+
+        $result = $paiement->ProceedToPayment($amount, $nom, $email); // Service PaymentStripe pour traitement du paiement
+
+        if($result === true){ // Si le paiement est valide dans le service PaymentStripe
+
+            // Récupération des date/heure de livraison, pour affichage sur la page de confirmation
+            $date = $this->session->get('date');
+            $heure = $this->session->get('heure');
+
+            $this->session->clear(); // Suppression de toutes les variables de session
+
+            return $this->render('Commande/confirmation.html.twig', array('date' => $date, 'heure' => $heure)); // Tout se passe bien, le client a payé
+
+        }
+        elseif(is_array($result) && !empty($result)) { // Le service PaymentStripe renvoie un tableau (d'erreurs)
+            $errors = $result;
+        }
+        else {
+            $errors['UnknownError'] = "Une erreur inconnue est survenue.";
+        }
+
+        return $this->render('Commande/erreur-paiement.html.twig', array('errors' => $errors)); // En cas d'erreur de tout type
+
     }
 
     /**

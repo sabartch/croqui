@@ -1,60 +1,1 @@
-$(document).ready(function(){
-
-$("#la-carte").on('click', 'div.ajout-rapide', function(e) {
-	e.preventDefault();
-	
-	$(this).next('.cumul').show().delay(800).fadeOut("slow");
-	
-	var codep = $(this).attr("data-id"); //get product code
-	$.getJSON( "https://www.croqui.fr/cart_process.php", {"product_code":codep} , function(data){
-	});
-	$("#shopping-cart-results" ).load( "https://www.croqui.fr/cart_process.php" );
-	$(".qtepanier").load("https://www.croqui.fr/cart_process.php #qtepanierloader");
-	$("#lePanier").addClass('notification--reveal');
-});
-
-
-
-
-//Remove items from cart
-$("#shopping-cart-results").on('click', 'div.item__remove', function(e) {
-	e.preventDefault();
-
-	var pcode = $(this).attr("data-code"); //get product code
-	$(this).parent().fadeOut(); //remove item element from box
-	$.getJSON( "https://www.croqui.fr/cart_process.php", {"remove_code":pcode} , function(data){ //get Item count from Server
-	});
-	$("#shopping-cart-results" ).load( "https://www.croqui.fr/cart_process.php" );
-	$(".qtepanier").load("https://www.croqui.fr/cart_process.php #qtepanierloader");
-});
-
-
-//Changement de formule
-$("#shopping-cart-results").on('click', 'span.optionf', function(e) {
-	e.preventDefault();
-
-	var pcode = $(this).attr("data-code");
-	$.getJSON( "https://www.croqui.fr/cart_process.php", {"choix":pcode} , function(data){
-	});
-	$("#shopping-cart-results" ).load( "https://www.croqui.fr/cart_process.php" );
-	$(".qtepanier").load("https://www.croqui.fr/cart_process.php #qtepanierloader");
-});
-
-
-$("#payment-form").submit(function(e){
-	var form_data = $(this).serialize();
-	var button_content = $(this).find('button[type=submit]');
-	button_content.html('En cours de validation...');
-});
-
-
-
-$("#calendar").load("https://www.croqui.fr/calendrier.php");
-
-$( "#date" ).change(function() {  
-	$( "#date option:selected" ).each(function() {
-		$("#calendar").load("https://www.croqui.fr/calendrier.php", { choice : $(this).val() });
-	});
-})
-
-});
+$(document).ready(function(){    $("#la-carte").on('click', 'div.ajout-rapide', function() { // Evènement jquery : clic sur bouton d'ajout au panier.        $(this).next('.cumul').show().delay(800).fadeOut("slow"); // Affichage du petit "+1" sur la carte lors de l'ajout.        var codep = $(this).attr("data-id"); // Récupération de l'id produit de la carte.        $.ajax({            url: "{{ path('add_panier') }}", // On envoie la requête à la fonction addPanier() de PanierController.            method: "post",            data: {"id":codep}        }).done(function(){            $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" ); // Appel à showPanier() de PanierController pour régénérer le panier.            // Récupération du contenu du div.qtepanierloader (hidden dans panier.html.twig), et inclusion dans le div.qtepanier (base.html.twig).            // Ce contenu est la quantité de produits dans la session Panier, qui est mise à jour lors de l'appel à addPanier().            $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");            $("#lePanier").addClass('notification--reveal'); // Réapparition de la colonne panier lors de l'ajout produit.        });    });    $("#shopping-cart-results").on('click', 'div.item__remove', function() { // Evènement jquery : clic sur la croix de suppression du panier.        $(this).parent().fadeOut(); // Disparition du produit de la liste.        var pcode = $(this).attr("data-code"); // Récupération du key du panier.        $.ajax({            url: "{{ path('delete_panier') }}", // On envoie la requête à la fonction deletePanier() de PanierController.            method: "post",            data: {"key":pcode}        }).done(function(){            $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" );            $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");        });    });    $("#shopping-cart-results").on('click', 'span.optionf', function() {        var pcode = $(this).attr("data-code");        $.ajax({            url: "{{ path('show_panier') }}", // On envoie la requête à la fonction showPanier() de PanierController.            method: "post",            data: {"f":pcode}        }).done(function(){            $("#shopping-cart-results" ).load( "{{ path('show_panier') }}" );            $(".qtepanier").load("{{ path('show_panier') }} #qtepanierloader");        });    });});$("#calendar").load("{{ path('calendrier') }}");$( "#date" ).change(function() {    $( "#date option:selected" ).each(function() {        $("#calendar").load("{{ path('calendrier') }}", { choice : $(this).val() });    });})

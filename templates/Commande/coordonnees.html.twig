@@ -40,30 +40,36 @@
 
                         {{ form_errors(form) }}
 
+                        <span>{{ form_errors(form.nom) }}</span>
                         <div class="input-with-icon">
+                            {{ form_errors(form.nom) }}
                             {{ form_label(form.nom, "Nom et prénom") }}
                             <i class="icon icon-Male-2"></i>
                             {{ form_widget(form.nom) }}
                         </div>
 
+                        <span>{{ form_errors(form.adresse) }}</span>
                         <div class="input-with-icon">
                             {{ form_label(form.adresse, "Adresse (N° et rue)") }}
                             <i class="icon icon-Map-Marker2"></i>
                             {{ form_widget(form.adresse) }}
-                        </div>
 
+
+                        <span>{{ form_errors(form.precisions) }}</span>
                         <div class="input-with-icon">
                             {{ form_label(form.precisions, "Précisions (code porte, étage...)") }}
                             <i class="icon icon-Direction-East"></i>
                             {{ form_widget(form.precisions) }}
                         </div>
 
+                        <span>{{ form_errors(form.cp) }}</span>
                         <div class="input-with-icon">
                             {{ form_label(form.cp, "Code postal") }}
-                            <span class="cpform">
+                            <span class="cpform"></span>
                             {{ form_widget(form.cp, {'attr': {'class': 'arrondissement', 'style':'background-color:white'}}) }}
                         </div>
 
+                        <span>{{ form_errors(form.telephone) }}</span>
                         <div class="input-with-icon">
                             {{ form_label(form.telephone, "Téléphone") }}
                             <i class="icon icon-Telephone"></i>

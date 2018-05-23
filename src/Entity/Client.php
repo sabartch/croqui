@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
@@ -19,6 +20,8 @@ class Client
 
     /**
      * @ORM\Column(name="email", type="string", length=256)
+     *
+     * @Assert\Email(strict=true, checkMX=true, message="L'adresse email semble être invalide !")
      */
     private $email;
 

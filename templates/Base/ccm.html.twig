@@ -1,5 +1,7 @@
 {# src/Base/ccm.html.twig #}
 
+{% set navtransparent = "true" %}
+
 {% extends "base.html.twig" %}
 
 {% block body %}
@@ -118,7 +120,7 @@
 
                     <div class="pricing__price">
 
-                        <span class="h1">...</span>
+                        <span class="h1">{{ prix_formule_1 }}</span>
 
                         <span class="pricing__dollar h5">€</span>
 
@@ -128,11 +130,11 @@
 
                     <p class="black-modal" style="font-size:0.9em;font-weight:500;">
 
-                        <b>...</b> gourmandises au choix
+                        <b>{{ qte_formule_1 }}</b> gourmandises au choix
 
                         <br /><br />+ 1 demi-baguette incluse
 
-                        <br /><br /><span style="font-size:0.9em;">... € par gourmandise en plus</span>
+                        <br /><br /><span style="font-size:0.9em;">{{ prix_supplement }} € par gourmandise en plus</span>
 
                         <br /><br />Livraison gratuite
 
@@ -162,7 +164,7 @@
 
                     <div class="pricing__price">
 
-                        <span class="h1">...</span>
+                        <span class="h1">{{ prix_formule_2 }}</span>
 
                         <span class="pricing__dollar h5">€</span>
 
@@ -172,11 +174,11 @@
 
                     <p class="black-modal" style="font-size:0.9em;font-weight:500;">
 
-                        <b>...</b> gourmandises au choix
+                        <b>{{ qte_formule_2 }}</b> gourmandises au choix
 
                         <br /><br />+ 1 baguette entière incluse
 
-                        <br /><br /><span style="font-size:0.9em;">... € par gourmandise en plus</span>
+                        <br /><br /><span style="font-size:0.9em;">{{ prix_supplement }} € par gourmandise en plus</span>
 
                         <br /><br />Livraison gratuite
 
@@ -206,7 +208,7 @@
 
                     <p class="black-modal" style="font-size:0.9em;font-weight:500;">Ajoutez autant de gourmandises que vous voulez dans le panier.
 
-                        <br />Au-delà de ... gourmandises, tout est à ... euros. Livraison gratuite !</p>
+                        <br />Au-delà de {{ qte_formule_2 }} gourmandises, tout est à {{ prix_supplement }} euros. Livraison gratuite !</p>
 
                     <a class="btn btn--primary" href="{{ path('carte') }}?f=multi">
 
@@ -249,7 +251,7 @@
 
                 <p class="vcenter">
 
-                    C'est super simple : explore <a href="{{ path('carte') }}">la carte</a> des gourmandises. Ajoutes-en ... au panier, ou ... si vous êtes deux.
+                    C'est super simple : explore <a href="{{ path('carte') }}">la carte</a> des gourmandises. Ajoutes-en {{ qte_formule_1 }} au panier, ou {{ qte_formule_2 }} si vous êtes deux.
 
                     <br /><br />
 
@@ -257,7 +259,7 @@
 
                     <br /><br />
 
-                    Si vous êtes plusieurs ou que vous avez une grosse faim, ajoutez autant de gourmandises que nécessaire pour ... € chacune.
+                    Si vous êtes plusieurs ou que vous avez une grosse faim, ajoutez autant de gourmandises que nécessaire pour {{ prix_supplement }} € chacune.
 
                     <br /><br />
 
